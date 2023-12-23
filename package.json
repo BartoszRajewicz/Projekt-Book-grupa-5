@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "1.1.0",
   "description": "",
-  "homepage": "https://BartoszRajewicz.github.io/Projekt-Book-grupa-5/",
+  "homepage": "https://BartoszRajewicz.github.io/Projekt-Book-grupa-5",
   "scripts": {
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /Projekt-Book-grupa-5/"
