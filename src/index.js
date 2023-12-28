@@ -1,1 +1,1 @@
-import './sass/main.scss';
+import './js/markup-shopping-list';
