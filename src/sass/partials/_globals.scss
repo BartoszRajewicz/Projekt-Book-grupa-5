@@ -1,0 +1,21 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.body {
+  font-family: 'DM Sans', sans-serif;
+  color: $fontBlack;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: $backgroundColor;
+}
+
