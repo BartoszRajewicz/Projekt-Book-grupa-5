@@ -1,0 +1,74 @@
+img {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.charity-container {
+  border-radius: 16px;
+  color: #ffffff;
+  background: radial-gradient(circle at top, #4f2ee8, rgba(93, 53, 202, 0.386));
+  overflow: hidden;
+  position: relative;
+  height: 29.625rem;
+  width: 22.25rem;
+}
+
+.charity-item {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 20px;
+
+  p {
+    display: none;
+  }
+
+  img {
+    margin-left: 20px;
+  }
+}
+
+.charity-slider {
+  padding-left: 40px;
+  width: 149px;
+  height: 292px;
+  overflow: hidden;
+  position: relative;
+
+  .slider {
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+  }
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.arrow-container {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .arrow {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    fill: #000;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    transform-origin: center;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    &.up {
+      transform: scaleY(-1);
+    }
+  }
+}
