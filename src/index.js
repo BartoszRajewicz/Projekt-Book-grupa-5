@@ -1,3 +1,2 @@
-import './sass/main.scss';
-import './charities';
-import './home-categories';
+import './js/charities';
+import './js/homeCategories';
