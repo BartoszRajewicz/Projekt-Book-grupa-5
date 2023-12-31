@@ -1,1 +1,1 @@
-import './js/markup-shopping-list';
+import './js/shopping-list';
