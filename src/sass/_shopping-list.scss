@@ -3,7 +3,7 @@
   padding-top: 40px;
   padding-bottom: 40px;
   min-height: 100vh;
-  background-color: #f6f6f6;
+  background-color: var(--backgroundColor);
 }
 
 .main-title-shoplist-hidden {
@@ -34,7 +34,7 @@
 }
 
 .acсent-shoplist {
-  color: #4f2ee8;
+  color: var(--violetColor);
 }
 
 .empty-list {
@@ -83,7 +83,7 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  background-color: #4f2ee8;
+  background-color: var(--violetColor);
   border-radius: 50%;
   border-style: none;
   cursor: pointer;
@@ -119,7 +119,7 @@
 .card-category-shoplist {
   font-size: 12px;
   font-weight: 400;
-  color: #b4afaf;
+  color: var(--fontLightCategories);
   line-height: 1.17;
   letter-spacing: 0.36px;
   margin-bottom: 8px;
@@ -154,7 +154,7 @@
 .card-author-shoplist {
   margin-right: auto;
   max-width: 97px;
-  color: #b4afaf;
+  color: var(--fontLightCategories);
   font-size: 12px;
   font-style: italic;
   font-weight: 400;
@@ -174,7 +174,7 @@
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: auto;
-  stroke: #111;
+  stroke: var(--black);
 }
 
 .shops-list::-webkit-scrollbar {
@@ -242,7 +242,7 @@
     right: 24px;
     width: 34px;
     height: 34px;
-    background-color: #4f2ee8;
+    background-color: var(--violetColor);
     border-radius: 34px;
   }
 
