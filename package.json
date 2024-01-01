@@ -22,8 +22,5 @@
     "@parcel/transformer-sass": "^2.10.3",
     "parcel": "^2.10.3",
     "posthtml-include": "^1.7.4"
-  },
-  "dependencies": {
-    "save-dev": "^0.0.1-security"
   }
 }
