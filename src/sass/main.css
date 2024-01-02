@@ -3,7 +3,6 @@
  * Główny plik dla stylów.
  * Wszystkie partials podłączamy tutaj.
  */
-/* header.scss */
 .page-header {
   width: 100%;
   padding: 0 24px;
@@ -18,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* Now the container takes 100% of the width */
+  width: 100%;
 }
 .page-header__logo {
   display: flex;
@@ -26,11 +25,15 @@
   text-decoration: none;
 }
 .page-header__nav {
+  display: flex;
   align-items: center;
   gap: 20px;
 }
 .page-header__nav__item {
   list-style: none;
+}
+.page-header__nav__item:not(:last-child) {
+  margin-right: 20px;
 }
 .page-header__nav__item__link {
   text-decoration: none;
@@ -40,15 +43,14 @@
   line-height: 18px;
   letter-spacing: -0.04em;
   text-align: left;
-  color: #000; /* Default color */
+  color: #000;
 }
 .page-header__nav__item__link:hover {
-  color: #eac645; /* Highlight color on hover */
+  color: #eac645;
 }
 .page-header__nav__item__link--active {
-  color: #eac645; /* Active state color */
+  color: #eac645;
 }
-
 .menu-container {
   display: none;
   position: fixed;
@@ -82,6 +84,9 @@
   line-height: 18px;
   letter-spacing: -0.04em;
   text-align: left;
+}
+.menu-container__nav__mobile-menu__item__link:hover {
+  color: #eac645;
 }
 
 img {

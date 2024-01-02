@@ -1,5 +1,3 @@
-/* header.scss */
-
 .page-header {
   width: 100%;
   padding: 0 24px;
@@ -14,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* Now the container takes 100% of the width */
+    width: 100%;
   }
 
   &__logo {
@@ -24,11 +22,16 @@
   }
 
   &__nav {
+    display: flex;
     align-items: center;
     gap: 20px;
 
     &__item {
       list-style: none;
+
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
 
       &__link {
         text-decoration: none;
@@ -38,17 +41,25 @@
         line-height: 18px;
         letter-spacing: -0.04em;
         text-align: left;
-        color: #000; /* Default color */
+        color: #000; 
 
         &:hover {
-          color: #eac645; /* Highlight color on hover */
+          color: #eac645; 
         }
 
         &--active {
-          color: #eac645; /* Active state color */
+          color: #eac645; 
         }
       }
     }
+  }
+
+  .switcher {
+    
+  }
+
+  .menu-toggle {
+   
   }
 }
 
@@ -85,8 +96,14 @@
           line-height: 18px;
           letter-spacing: -0.04em;
           text-align: left;
+
+          &:hover {
+            color: #eac645; 
+          }
         }
       }
     }
   }
 }
+
+
