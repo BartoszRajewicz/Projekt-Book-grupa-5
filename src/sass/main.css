@@ -24,12 +24,10 @@
   align-items: center;
   text-decoration: none;
 }
-.page-header__nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
 .page-header__nav__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
   list-style: none;
 }
 .page-header__nav__item:not(:last-child) {

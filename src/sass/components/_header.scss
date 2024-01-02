@@ -4,8 +4,6 @@
   height: 72px;
   border-radius: 0 0 8px 8px;
   border: 1.5px solid #111111;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
 
   &__container {
@@ -23,10 +21,11 @@
 
   &__nav {
     display: flex;
-    align-items: center;
-    gap: 20px;
-
+    justify-content: space-between;
     &__item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
       list-style: none;
 
       &:not(:last-child) {
@@ -41,25 +40,17 @@
         line-height: 18px;
         letter-spacing: -0.04em;
         text-align: left;
-        color: #000; 
+        color: #000;
 
         &:hover {
-          color: #eac645; 
+          color: #eac645;
         }
 
         &--active {
-          color: #eac645; 
+          color: #eac645;
         }
       }
     }
-  }
-
-  .switcher {
-    
-  }
-
-  .menu-toggle {
-   
   }
 }
 
@@ -98,12 +89,10 @@
           text-align: left;
 
           &:hover {
-            color: #eac645; 
+            color: #eac645;
           }
         }
       }
     }
   }
 }
-
-
