@@ -9,8 +9,6 @@
   height: 72px;
   border-radius: 0 0 8px 8px;
   border: 1.5px solid #111111;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .page-header__container {
@@ -23,6 +21,10 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+.page-header__nav {
+  display: flex;
+  justify-content: space-between;
 }
 .page-header__nav__item {
   display: flex;
@@ -49,6 +51,53 @@
 .page-header__nav__item__link--active {
   color: #eac645;
 }
+.page-header .switcher__container {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.page-header .switcher__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.page-header .switcher__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+.page-header .switcher__slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+.page-header .switcher__input:checked + .page-header .switcher__slider {
+  background-color: #2196f3;
+}
+.page-header .switcher__input:checked + .page-header .switcher__slider::before {
+  transform: translateX(26px);
+}
+.page-header .switcher__input:focus + .page-header .switcher__slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+.page-header .switcher__slider--round {
+  border-radius: 34px;
+}
+.page-header .switcher__slider--round::before {
+  border-radius: 50%;
+}
+
 .menu-container {
   display: none;
   position: fixed;
