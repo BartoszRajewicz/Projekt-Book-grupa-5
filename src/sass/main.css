@@ -3,13 +3,34 @@
  * Główny plik dla stylów.
  * Wszystkie partials podłączamy tutaj.
  */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.body {
+  font-family: "DM Sans", sans-serif;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #f6f6f6;
+}
+
 .page-header {
   width: 100%;
   padding: 0 24px;
   height: 72px;
   border-radius: 0 0 8px 8px;
   border: 1.5px solid #111111;
-  align-items: center;
+  display: flex;
 }
 .page-header__container {
   display: flex;
@@ -22,108 +43,63 @@
   align-items: center;
   text-decoration: none;
 }
-.page-header__nav {
-  display: flex;
-  justify-content: space-between;
-}
-.page-header__nav__item {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  list-style: none;
-}
-.page-header__nav__item:not(:last-child) {
-  margin-right: 20px;
-}
-.page-header__nav__item__link {
-  text-decoration: none;
-  font-family: "DM Sans";
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: -0.04em;
-  text-align: left;
-  color: #000;
-}
-.page-header__nav__item__link:hover {
-  color: #eac645;
-}
-.page-header__nav__item__link--active {
-  color: #eac645;
-}
-.page-header .switcher__container {
+.page-header .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 22px;
 }
-.page-header .switcher__input {
+.page-header .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-.page-header .switcher__slider {
+.page-header .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
+  top: 2;
   left: 0;
-  right: 0;
+  right: 3;
   bottom: 0;
-  background-color: #ccc;
+  background: radial-gradient(rgb(79, 46, 232), rgb(255, 255, 255));
   transition: 0.4s;
+  border-radius: 20px;
 }
-.page-header .switcher__slider::before {
+.page-header .slider::before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  height: 16px;
+  width: 16px;
+  left: 1px;
+  top: 2px;
+  background-color: #ffffff;
   transition: 0.4s;
-}
-.page-header .switcher__input:checked + .page-header .switcher__slider {
-  background-color: #2196f3;
-}
-.page-header .switcher__input:checked + .page-header .switcher__slider::before {
-  transform: translateX(26px);
-}
-.page-header .switcher__input:focus + .page-header .switcher__slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-.page-header .switcher__slider--round {
-  border-radius: 34px;
-}
-.page-header .switcher__slider--round::before {
   border-radius: 50%;
 }
+.page-header input:checked + .slider {
+  background-color: #4f2ee8;
+}
+.page-header input:focus + .slider {
+  box-shadow: 0 0 1px #f6f6f6;
+}
+.page-header input:checked + .slider:before {
+  transform: translateX(18px);
+}
 
-.menu-container {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1000;
-}
-.menu-container__nav {
+.nav {
+  align-self: center;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  gap: 20px;
 }
-.menu-container__nav__mobile-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.nav__item {
   list-style: none;
+  position: relative;
 }
-.menu-container__nav__mobile-menu__item {
-  margin-bottom: 20px;
+.nav__item:not(:last-child) {
+  margin-right: 20px;
 }
-.menu-container__nav__mobile-menu__item__link {
+.nav__item__link {
+  position: relative;
   text-decoration: none;
   font-family: "DM Sans";
   font-size: 14px;
@@ -131,9 +107,39 @@
   line-height: 18px;
   letter-spacing: -0.04em;
   text-align: left;
+  color: #000000;
 }
-.menu-container__nav__mobile-menu__item__link:hover {
-  color: #eac645;
+.nav__item__link--active {
+  color: #eac645; /* Active state color */
+}
+.nav__item__link--active::after {
+  content: "";
+  position: absolute;
+  bottom: -33px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #eac645;
+  pointer-events: none;
+}
+.nav .nav__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -20px;
+  margin-left: 20px;
+}
+.nav .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+.nav .switch .input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 img {

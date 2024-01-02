@@ -1,3 +1,5 @@
+@import './globals';
+
 .page-header {
   width: 100%;
   padding: 0 24px;
@@ -18,19 +20,61 @@
     align-items: center;
     text-decoration: none;
   }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 2;
+    left: 0;
+    right: 3;
+    bottom: 0;
+    background: radial-gradient(rgba(79, 46, 232, 1), rgba(255, 255, 255, 1));
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 20px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 16px;
+      width: 16px;
+      left: 1px;
+      top: 2px;
+      background-color: #ffffff;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  input:checked + .slider {
+    background-color: $violetColor;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px $backgroundColor;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+  }
 }
 
-.switcher {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 24px;
-  // Dodaj style dla switchera, jeśli są potrzebne
-}
-
-.menu-toggle {
-  // Dodaj style dla przycisku menu, jeśli są potrzebne
-}
+// nawigacja //
 
 .nav {
   align-self: center;
@@ -67,114 +111,74 @@
           width: 100%;
           height: 4px;
           border-radius: 2px;
-          background-color: $yellowColor;
+          background-color: #eac645;
           pointer-events: none;
         }
       }
     }
   }
 
-  .switcher {
-    &__container {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
+  .nav__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -20px;
+    margin-left: 20px; // Dostosuj wartość marginesu według potrzeb
+  }
+  // switch //
 
-    &__input {
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+
+    .input {
       opacity: 0;
       width: 0;
       height: 0;
     }
-
-    &__slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-
-      &::before {
-        position: absolute;
-        content: '';
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-      }
-    }
-
-    &__input:checked + &__slider {
-      background-color: #2196f3;
-
-      &::before {
-        transform: translateX(26px);
-      }
-    }
-
-    &__input:focus + &__slider {
-      box-shadow: 0 0 1px #2196f3;
-    }
-
-    &__slider--round {
-      border-radius: 34px;
-
-      &::before {
-        border-radius: 50%;
-      }
-    }
   }
-}
 
-.nav__icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -20px;
-  margin-left: 20px; // Dostosuj wartość marginesu według potrzeb
-}
-.menu-container {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1000;
+  // menu mobilne //
 
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    list-style: none;
+  .menu-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
 
-    &__item {
-      margin-bottom: 20px;
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style: none;
 
-      &__link {
-        text-decoration: none;
-        font-family: 'DM Sans';
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 18px;
-        letter-spacing: -0.04em;
-        text-align: left;
+      &__item {
+        margin-bottom: 20px;
 
-        &:hover {
-          color: #eac645; /* Highlight color on hover */
-        }
+        &__link {
+          text-decoration: none;
+          font-family: 'DM Sans';
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: -0.04em;
+          text-align: left;
 
-        &__icon {
-          position: absolute;
-          top: 10px;
-          margin-left: 10px; // Dostosuj wartość marginesu według potrzeb
+          &:hover {
+            color: #eac645; /* Highlight color on hover */
+          }
+
+          &__icon {
+            position: absolute;
+            top: 10px;
+            margin-left: 10px; // Dostosuj wartość marginesu według potrzeb
+          }
         }
       }
     }
