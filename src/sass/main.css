@@ -1,0 +1,252 @@
+@charset "UTF-8";
+/*
+ * Główny plik dla stylów.
+ * Wszystkie partials podłączamy tutaj.
+ */
+/* header.scss */
+.page-header {
+  width: 100%;
+  padding: 0 24px;
+  height: 72px;
+  border-radius: 0 0 8px 8px;
+  border: 1.5px solid #111111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; /* Now the container takes 100% of the width */
+}
+.page-header__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.page-header__nav {
+  align-items: center;
+  gap: 20px;
+}
+.page-header__nav__item {
+  list-style: none;
+}
+.page-header__nav__item__link {
+  text-decoration: none;
+  font-family: "DM Sans";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #000; /* Default color */
+}
+.page-header__nav__item__link:hover {
+  color: #eac645; /* Highlight color on hover */
+}
+.page-header__nav__item__link--active {
+  color: #eac645; /* Active state color */
+}
+
+.menu-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1000;
+}
+.menu-container__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.menu-container__nav__mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+}
+.menu-container__nav__mobile-menu__item {
+  margin-bottom: 20px;
+}
+.menu-container__nav__mobile-menu__item__link {
+  text-decoration: none;
+  font-family: "DM Sans";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.04em;
+  text-align: left;
+}
+
+img {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.charity-container {
+  border-radius: 16px;
+  color: #ffffff;
+  background: radial-gradient(circle at top, #4f2ee8, rgba(93, 53, 202, 0.386));
+  overflow: hidden;
+  position: relative;
+  height: 29.625rem;
+  width: 22.25rem;
+}
+
+.charity-item {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 20px;
+}
+.charity-item p {
+  display: none;
+}
+.charity-item img {
+  margin-left: 20px;
+}
+
+.charity-slider {
+  padding-left: 40px;
+  width: 149px;
+  height: 292px;
+  overflow: hidden;
+  position: relative;
+}
+.charity-slider .slider {
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.arrow-container {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow-container .arrow {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  fill: #111111;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  transform-origin: center;
+}
+.arrow-container .arrow:hover {
+  transform: scale(1.2);
+}
+.arrow-container .arrow.up {
+  transform: scaleY(-1);
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+.categories-container {
+  margin-bottom: 20px;
+  overflow-y: auto;
+  max-height: 472px;
+  padding: 10px;
+  max-width: 356px;
+}
+
+.category-item {
+  margin-bottom: 32px;
+  cursor: pointer;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+.category-item:hover, .category-item:focus {
+  color: #4f2ee8;
+  font-weight: bold;
+}
+
+.category-item.active {
+  color: #4f2ee8;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -2%;
+}
+
+.categories-container::-webkit-scrollbar {
+  width: 8px;
+  height: 167px;
+}
+
+.categories-container::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 12px;
+}
+
+.categories-container::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 12px;
+}
+
+.all-categories-header {
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #111111;
+}
+
+.books-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  transition: opacity 0.5s ease;
+}
+
+.book-card {
+  padding: 10px;
+  text-align: center;
+}
+.book-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+.book-card .book-details {
+  margin-top: 10px;
+}
+
+.popular-categories-container {
+  display: none;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.body {
+  font-family: "DM Sans", sans-serif;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #f6f6f6;
+}/*# sourceMappingURL=main.css.map */
