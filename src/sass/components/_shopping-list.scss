@@ -383,6 +383,45 @@ ul li.active {
     max-width: 48px;
     max-height: 28px;
   }
+
+  .arrow-double-left {
+    width: 44px;
+    height: 44px;
+    margin-right: 8px;
+  }
+
+  .arrow-left {
+    width: 44px;
+    height: 44px;
+  }
+
+  .arrow-double-right {
+    width: 44px;
+    height: 44px;
+    margin-left: 8px;
+  }
+
+  .arrow-double-left .fa {
+    font-size: 24px;
+  }
+
+  .arrow-double-right .fa {
+    font-size: 24px;
+  }
+
+  li:nth-child(3) {
+    display: inline-flex;
+  }
+
+  ul {
+    margin-right: 24px;
+    padding-left: 24px;
+  }
+
+  ul li {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 /* +++++++++++ Desktop ++++++++++++ */
