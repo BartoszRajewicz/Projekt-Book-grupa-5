@@ -20,6 +20,7 @@ img {
   align-items: center;
   margin-left: 16px;
   margin-right: 20px;
+  filter: brightness(0) invert(1);
 
   p {
     display: none;
@@ -53,7 +54,7 @@ h3 {
 }
 .charity-slider {
   padding-left: 40px;
-  width: 120px;
+
   height: 292px;
   overflow: hidden;
   position: relative;

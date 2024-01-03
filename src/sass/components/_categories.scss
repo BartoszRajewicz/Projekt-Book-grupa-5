@@ -1,6 +1,8 @@
 body {
   font-family: $fontFamily;
-  margin: 20px;
+}
+.white {
+  filter: brightness(0) invert(1);
 }
 
 .categories-container {
