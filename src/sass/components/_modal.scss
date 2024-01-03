@@ -1,0 +1,99 @@
+.popup {
+  background: rgba(17, 17, 17, 0.4);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &__in {
+    width: 579px;
+    border-radius: $buttonSmallRadius;
+    border: $defaultBorder $black;
+    background: $backgroundColor;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__content {
+    padding: 40px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+
+  &__flex {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .book-info {
+    &__flex {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .book {
+    &__img {
+      width: 192px;
+      height: 281px;
+      border-radius: 8px;
+      margin-right: 24px;
+    }
+    &__title {
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.96px;
+      margin: 0;
+    }
+    &__author {
+      color: #b4afaf;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: -0.56px;
+      margin: 0;
+      margin-bottom: 20px;
+      margin-top: 8px;
+    }
+    &__description {
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: -0.56px;
+    }
+  }
+  .trading-platform-icons {
+    margin-top: 20px;
+    display: inline-flex;
+    gap: 20px;
+  }
+  .shopping-list-btn {
+    background: $backgroundColor;
+    display: flex;
+    width: 499px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: $buttonModalRadius;
+    border: $defaultBorder $violetColor;
+    margin-top: 40px;
+
+    font-size: 18px;
+    font-style: normal;
+    line-height: 24px;
+    letter-spacing: -0.18px;
+    text-transform: uppercase;
+  }
+}
