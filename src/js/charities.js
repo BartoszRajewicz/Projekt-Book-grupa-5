@@ -1,19 +1,27 @@
+import {
+  saveChildrenImg,
+  projectHopeImg,
+  internationalMedImg,
+  razomImg,
+  actionsAgainstImg,
+  charityFoundImg,
+  medecinsImg,
+  worldVisionImg,
+  unitedImg,
+} from './charitiesExport';
+
 function openCharityLink(url) {
   window.open(url, '_blank');
 }
 
 let currentIndex = 0;
+const visibleSlides = 5;
 
 function nextSlide() {
   const slides = document.querySelector('.slider');
   const totalSlides = document.querySelectorAll('.charity-item').length;
-  const visibleSlides = 5;
 
-  if (currentIndex < totalSlides - visibleSlides) {
-    currentIndex++;
-  } else {
-    currentIndex = 0;
-  }
+  currentIndex = (currentIndex + 1) % (totalSlides - visibleSlides + 1);
 
   const slideHeight = document.querySelector('.charity-item').offsetHeight;
 
@@ -22,66 +30,71 @@ function nextSlide() {
 
   updateArrow();
 }
+
 function updateArrow() {
   const arrow = document.querySelector('.arrow');
   const totalSlides = document.querySelectorAll('.charity-item').length;
-  const visibleSlides = 5;
 
-  if (currentIndex >= totalSlides - visibleSlides) {
-    arrow.classList.add('up');
-  } else {
-    arrow.classList.remove('up');
-  }
+  arrow.classList.toggle('up', currentIndex >= totalSlides - visibleSlides);
 }
+
+import {
+  saveChildrenImg,
+  projectHopeImg,
+  internationalMedImg,
+  razomImg,
+  actionsAgainstImg,
+  charityFoundImg,
+  medecinsImg,
+  worldVisionImg,
+  unitedImg,
+} from './charitiesExport';
 
 const charities = [
   {
     title: 'Save the Children',
     url: 'https://www.savethechildren.net/what-we-do/emergencies/ukraine-crisis',
-    img: '/src/images/save_children.png',
+    img: saveChildrenImg,
   },
   {
     title: 'Project HOPE',
     url: 'https://www.projecthope.org/country/ukraine/',
-    img: './src/images/hope.png',
+    img: projectHopeImg,
   },
-
   {
     title: 'International Medical Corps',
     url: 'https://internationalmedicalcorps.org/country/ukraine/',
-    img: 'images/internationalmed.png',
+    img: internationalMedImg,
   },
   {
     title: 'RAZOM',
     url: 'https://www.razomforukraine.org/',
-    img: 'src/images/razom.png',
+    img: razomImg,
   },
   {
     title: 'Action against hunger',
     url: 'https://www.actionagainsthunger.org/location/europe/ukraine/',
-    img: 'src/images/actionsagainst.png',
+    img: actionsAgainstImg,
   },
   {
     title: 'Serhiy Prytula Charity Foundation',
     url: 'https://prytulafoundation.org/en',
-    img: 'src/images/charityfound.png',
+    img: charityFoundImg,
   },
   {
     title: 'Medicins Sans Frontieres',
     url: 'https://www.msf.org/ukraine',
-    img: 'src/images/medecins.png',
+    img: medecinsImg,
   },
-
   {
     title: 'World vision',
     url: 'https://www.wvi.org/emergencies/ukraine',
-    img: 'src/images/worldvision.png',
+    img: worldVisionImg,
   },
-
   {
     title: 'UNITED24',
     url: 'https://u24.gov.ua/uk',
-    img: 'src/images/united.png',
+    img: unitedImg,
   },
 ];
 
@@ -94,11 +107,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const charNum = (index + 1).toString().padStart(2, '0');
 
     img.src = charity.img;
+    img.alt = charNum;
+    img.title = charity.title;
 
     img.onclick = () => openCharityLink(charity.url);
 
     div.className = 'charity-item';
-
     div.innerText = charNum;
 
     div.appendChild(img);
