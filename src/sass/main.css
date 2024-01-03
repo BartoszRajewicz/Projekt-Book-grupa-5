@@ -22,13 +22,6 @@
   border-radius: 2px;
 }
 
-.example .background {
-  height: 240px;
-  background-image: url("../images/demo.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
 .section-shopping-list {
   margin-top: 64px;
   padding-top: 40px;
