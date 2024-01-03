@@ -6,6 +6,7 @@
     <title>Nagłówek strony</title>
     <link
       rel="stylesheet"
+      href="./sass/main.css"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
       integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
       crossorigin="anonymous"
@@ -16,12 +17,14 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,400;1,9..40,100&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./sass/main.css" />
+    <link rel="stylesheet" href="/src/sass/main.scss" />
   </head>
   <body>
     <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony. -->
     <include src="./partials/header.html"></include>
     <include src="./partials/home-menu.html"></include>
+
+    <include src="./partials/shopping-list.html"></include>
 
     <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
     <script src="./index.js" type="module"></script>

@@ -20,6 +20,7 @@ img {
   align-items: center;
   margin-left: 16px;
   margin-right: 20px;
+  filter: brightness(0) invert(1);
 
   p {
     display: none;
@@ -30,9 +31,30 @@ img {
   }
 }
 
+.titl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 40px;
+  margin-bottom: 12px;
+}
+
+h3 {
+  margin-right: 40px;
+}
+
+.herb {
+  fill: #ffffff;
+  width: 20px;
+  height: 32px;
+  margin-left: 20px;
+}
+.herb-container {
+  margin-right: 20px;
+}
 .charity-slider {
   padding-left: 40px;
-  width: 149px;
+
   height: 292px;
   overflow: hidden;
   position: relative;
