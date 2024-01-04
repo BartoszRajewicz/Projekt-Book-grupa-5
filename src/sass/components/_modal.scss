@@ -8,7 +8,6 @@
   height: 100%;
   z-index: 100;
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  // a
 
   &__in {
     width: 579px;
@@ -25,6 +24,9 @@
 
   &__content {
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__close {
@@ -78,6 +80,19 @@
     margin-top: 20px;
     display: inline-flex;
     gap: 20px;
+    align-items: center;
+  }
+  .icon-amazon {
+    width: 62px;
+    height: 19px;
+    background: url(../images/amazon.svg), no-repeat;
+    mix-blend-mode: luminosity;
+  }
+  .icon-barenNobel {
+    width: 33px;
+    height: 32px;
+    background: url(../images/baren-nobel.svg), no-repeat;
+    mix-blend-mode: luminosity;
   }
   .shopping-list-btn {
     background: $backgroundColor;
@@ -96,5 +111,14 @@
     line-height: 24px;
     letter-spacing: -0.18px;
     text-transform: uppercase;
+  }
+  .add-receipt {
+    width: 324px;
+    color: rgba(17, 17, 17, 0.5);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: -0.48px;
   }
 }
