@@ -1,8 +1,9 @@
+@import './globals';
+
 .section-shopping-list {
-  margin-top: 64px;
-  padding-top: 40px;
+  // padding-top: 40px;
   padding-bottom: 40px;
-  min-height: 100vh;
+  // min-height: 100vh;
   background-color: var(--backgroundColor);
 }
 
@@ -34,7 +35,7 @@
 }
 
 .acсent-shoplist {
-  color: var(--violetColor);
+  color: #4f2ee8;
 }
 
 .empty-list {
@@ -94,7 +95,6 @@
 .delate-btn:focus {
   transform: scale(1.2);
 }
-
 
 .img-shoplist-card {
   border-radius: 8px;
@@ -208,7 +208,7 @@
 
 /* PAGINACJAAA*/
 
-.container {
+.container-pagination {
   display: flex;
   justify-content: center;
 }
@@ -236,12 +236,12 @@
   cursor: pointer;
 }
 
-ul {
+.pagination-list {
   margin-right: 14px;
   padding-left: 14px;
 }
 
-ul li {
+.pagination-list .link {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -253,11 +253,11 @@ ul li {
   cursor: pointer;
 }
 
-li:nth-child(3) {
+.link:nth-child(3) {
   display: none;
 }
 
-ul li.active {
+.pagination-list .link.active {
   color: #fff;
   background-color: #111;
 }
