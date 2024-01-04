@@ -139,42 +139,22 @@ body {
   border-radius: 12px;
 }
 
-.categories-container::-webkit-scrollbar-track {
-  background-color: transparent;
-  border-radius: 12px;
-}
-
-.all-categories-header {
-  margin-bottom: 10px;
-  cursor: pointer;
-  color: #111111;
-}
-
-.books-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
-  transition: opacity 0.5s ease;
-}
-
-.book-card {
-  padding: 10px;
-  text-align: center;
-}
-.book-card img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-.book-card .book-details {
-  margin-top: 10px;
-}
-
-.popular-categories-container {
-  display: none;
-  margin-top: 20px;
-  font-weight: bold;
-}
+/* +++++++++++ Desktop ++++++++++++ */
+@media screen and (min-width: 1440px) {
+  .section-shopping-list {
+    margin-top: 75px;
+  }
+  .container-shopping-list {
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrap-support {
+    display: block;
+  }
+  .container-shoplist {
+    width: 996px;
+  }
+}/*# sourceMappingURL=main.css.map */
 
 .section-shopping-list {
   margin-top: 64px;
@@ -464,28 +444,5 @@ body {
   .container-shoplist {
     width: 996px;
   }
-  .shopplist-item {
-    max-width: 996px;
-  }
-  .delate-btn {
-    width: 34px;
-    height: 34px;
-    padding: 0;
-    border-radius: 34px;
-  }
-  .card-shopplist {
-    max-width: 808px;
-  }
-  .card-title-shoplist {
-    max-width: 760px;
-  }
-  .card-category-shoplist {
-    max-width: 760px;
-  }
-  .card-description-shoplist {
-    min-width: 808px;
-  }
-  .wrapper-card-shoplist-footer {
-    max-width: 808px;
-  }
 }/*# sourceMappingURL=main.css.map */
+

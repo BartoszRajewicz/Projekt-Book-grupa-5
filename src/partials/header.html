@@ -1,0 +1,57 @@
+<header class="page-header">
+  <div class="container page-header__container">
+    <a class="logo" href="./index.html">
+      <svg class="header__icon" width="109px" height="28px">
+        <use href="./images/icons.svg#icon-logo"></use>
+      </svg>
+    </a>
+    <nav class="nav">
+      <div class="nav__item">
+        <a class="nav__link nav__link--active" href="./index.html">HOME</a>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="#">
+          SHOPPING LIST
+          <svg class="nav__icon" width="20px" height="20px">
+            <use href="./images/icons.svg#icon-shopping_cart"></use>
+          </svg>
+        </a>
+      </div>
+    </nav>
+    <!-- switcher -->
+    <div class="switcher" id="switcher">
+      <label class="switch">
+        <input type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="menu-icon" width="28" height="28">
+        <use href="./images/icons.svg#icon-hamburger"></use>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div class="menu-container js-menu-container" id="mobile-menu">
+  <button class="menu-toggle js-close-menu">
+    <svg class="menu-toggle-close" width="14" height="14">
+      <use href="./images/icons.svg#icon-x-close"></use>
+    </svg>
+  </button>
+  <nav class="mobile-menu">
+    <div class="mobile__item">
+      <a class="mobile__link" href="./index.html">HOME</a>
+    </div>
+    <div class="mobile__item">
+      <a class="mobile__link" href="#">
+        SHOPPING LIST
+        <svg class="nav__icon" width="20px" height="20px">
+          <use href="./images/icons.svg#icon-shopping_cart"></use>
+        </svg>
+      </a>
+    </div>
+  </nav>
+</div>

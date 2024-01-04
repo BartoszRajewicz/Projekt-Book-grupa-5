@@ -87,13 +87,14 @@
   border-radius: 50%;
   border-style: none;
   cursor: pointer;
-  transition: transform;
+  transition: transform; /* ta linijka zostaje */
 }
 
 .delate-btn:hover,
 .delate-btn:focus {
   transform: scale(1.2);
 }
+
 
 .img-shoplist-card {
   border-radius: 8px;
@@ -203,6 +204,106 @@
   margin: 0;
   max-width: 35px;
   height: auto;
+}
+
+/* PAGINACJAAA*/
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.arrow-left {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #111;
+  cursor: pointer;
+}
+
+.arrow-right {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: #eac645;
+  cursor: pointer;
+}
+
+ul {
+  margin-right: 14px;
+  padding-left: 14px;
+}
+
+ul li {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #111;
+  cursor: pointer;
+}
+
+li:nth-child(3) {
+  display: none;
+}
+
+ul li.active {
+  color: #fff;
+  background-color: #111;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.arrows-left-icon {
+  fill: #b4afaf;
+  margin-top: 4px;
+}
+
+.arrows-right-icon {
+  fill: #111;
+  margin-top: 4px;
+}
+
+.arrow-double-left {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #111;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.arrow-double-left .fa {
+  font-size: 22px;
+  color: #b4afaf;
+}
+
+.arrow-double-right .fa {
+  color: #111;
+  font-size: 22px;
+}
+
+.arrow-double-right {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: #eac645;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 /* +++++++++++ Tablet ++++++++++++ */
