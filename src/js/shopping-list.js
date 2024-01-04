@@ -4,26 +4,12 @@ export const refs = {
   emptyList: document.querySelector('.empty-list'),
 };
 
-const { shoppingList, emptyList } = refs;
-
 const objShop = {
   Amazon: `<img src="${amazon}" alt="logo Amazon" width="32" height="11">`,
   'Barnes and Noble': `<img src="${baren}" alt="logo Barnes and Noble" width="16" height="16">`,
 };
 
 let arrSelectedBooks = checkLocalStorage() || [];
-
-if (arrSelectedBooks.length !== 0) {
-  hiddenOrVisual('none', 'flex');
-  markupShoppingList(arrSelectedBooks);
-} else {
-  hiddenOrVisual('block', 'none');
-}
-
-export function hiddenOrVisual(statusForEmptyList, statusForShoppingList) {
-  emptyList.style.display = statusForEmptyList;
-  shoppingList.style.display = statusForShoppingList;
-}
 
 function checkLocalStorage() {
   let arrBooks = [];
@@ -53,11 +39,6 @@ function markupListOfStore(stores) {
     })
     .join('\n');
 }
-
-function markupShoppingList(arrSelectedBooks) {
-  const arrCardsSelectedBooks = arrSelectedBooks.map(
-    ({ id, bookName, author, img, description, title, shops }) => {
-      const shopsName = markupListOfStore(shops);
 
       if (!img) {
         img = '/path/to/default/image';
