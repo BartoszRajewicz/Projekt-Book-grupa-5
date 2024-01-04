@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const popupTitle = document.querySelector('.book__title');
   const popupAuthor = document.querySelector('.book__author');
   const popupDescription = document.querySelector('.book__description');
+  const popupImg = document.querySelector('.book__img');
+  const amazonLink = document.querySelector(`.trading-platform-amazon`);
+  const barenNobelLink = document.querySelector(`.trading-platform-barenNobel`);
   const shoppingListBtn = document.querySelector('.shopping-list-btn');
+  const shoppingList = document.querySelector(`.shopping-list`);
 
   fetchBookCategories();
 
@@ -98,14 +102,37 @@ document.addEventListener('DOMContentLoaded', function () {
     popupTitle.textContent = book.title;
     popupAuthor.textContent = book.author;
     popupDescription.textContent = book.description;
-
-    const bookImg = document.querySelector('.book__img');
-    bookImg.src = book.book_image;
-
+    popupImg.src = book.book_image;
+    amazonLink.href = book.buy_links[0].url;
+    barenNobelLink.href = book.buy_links[2].url;
     popup.style.display = 'block';
   }
 
   popupClose.addEventListener('click', () => {
     popup.style.display = 'none';
   });
+  document.addEventListener(`keydown`, event => {
+    if (event.key === `Escape`) {
+      popup.style.display = `none`;
+    }
+  });
+  window.addEventListener(`click`, event => {
+    if (event.target == popup) {
+      popup.style.display = `none`;
+    }
+  });
+
+  function addAndRemove(book) {
+    const receipt = document.querySelector(`.add-receipt`);
+
+    if (shoppingListBtn.textContent === 'Add to shopping list') {
+      shoppingListBtn.textContent = 'Remove from the shopping list';
+      receipt.textContent =
+        'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+    } else {
+      shoppingListBtn.textContent = 'Add to shopping list';
+      receipt.textContent = '';
+    }
+  }
+  shoppingListBtn.addEventListener(`click`, addAndRemove);
 });
