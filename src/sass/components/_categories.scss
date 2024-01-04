@@ -1,59 +1,73 @@
 body {
-  font-family: Arial, sans-serif;
-}
+    font-family: $fontFamily;
 
-.categories-container {
-  margin-bottom: 20px;
-  overflow-y: auto;
-  max-height: 472px;
-  padding: 10px;
-  max-width: 356px;
-}
+    .white {}
 
-.category-item {
-  margin-bottom: 32px;
-  cursor: pointer;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
+    .categories-container {
+        margin-bottom: 20px;
+        overflow-y: auto;
+        max-height: 472px;
+        padding: 10px;
+        max-width: 356px;
+    }
 
-.category-item:hover,
-.category-item:focus {
-  color: blue;
-  font-weight: bold;
-}
+    .category-item {
+        margin-bottom: 32px;
+        cursor: pointer;
+        transition: color 0.3s ease, font-weight 0.3s ease;
 
-.category-item.active {
-  color: #4f2ee8;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: -2%;
-}
+        &:hover,
+        &:focus {
+            color: $violetColor;
+            font-weight: bold;
+        }
+    }
 
-.all-categories-header {
-  margin-bottom: 10px;
-  cursor: pointer;
-  color: black;
+    .category-item.active {
+        color: $violetColor;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: -2%;
+    }
+    .categories-container::-webkit-scrollbar {
+         width: 8px;
+         height: 167px;
+     }
+    .categories-container::-webkit-scrollbar-thumb {
+         background-color: #e0e0e0;
+         border-radius: 12px;
+     }
+    .categories-container::-webkit-scrollbar-track {
+     background-color: transparent;
+        border-radius: 12px;
+    }
+    .all-categories-header {
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: $black;
+    }
+    .books-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+        transition: opacity 0.5s ease;
+    }
+    .book-card {
+        padding: 10px;
+        text-align: center;
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    .book-details {
+        margin-top: 10px;
+    }
 }
-
-.books-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
-  transition: opacity 0.5s ease;
-}
-
-.book-card {
-  padding: 10px;
-  text-align: center;
-}
-
-.popular-categories-container {
-  display: none;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.popup {
-  display: none;
-}
+    .popular-categories-container {
+        display: none;
+        margin-top: 20px;
+        font-weight: bold;
+        }
+    }
