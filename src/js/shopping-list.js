@@ -1,51 +1,44 @@
-import { trashSvg, amazon, baren } from './charitiesExport';
+import svg from '../images/trash.svg';
+import amazon from '../images/amazon.png';
+import baren from '../images/baren-nobel.png';
 export const refs = {
   shoppingList: document.querySelector('.shopping-list'),
   emptyList: document.querySelector('.empty-list'),
 };
-
 const { shoppingList, emptyList } = refs;
-
 const objShop = {
-  Amazon: `<img src="${amazon}" alt="logo Amazon" width="32" height="11">`,
+  Amazon: `<img src= "${amazon}" alt="logo Amazon" width="32" height="11">`,
   'Barnes and Noble': `<img src="${baren}" alt="logo Barnes and Noble" width="16" height="16">`,
 };
-
-let arrSelectedBooks = checkLocalStorage() || [];
-
+let arrSelectedBooks = [];
+arrSelectedBooks = checkLocalStorage() || [];
 if (arrSelectedBooks.length !== 0) {
   hiddenOrVisual('none', 'flex');
   markupShoppingList(arrSelectedBooks);
 } else {
   hiddenOrVisual('block', 'none');
 }
-
 export function hiddenOrVisual(statusForEmptyList, statusForShoppingList) {
   emptyList.style.display = statusForEmptyList;
   shoppingList.style.display = statusForShoppingList;
 }
-
 function checkLocalStorage() {
-  let arrBooks = [];
-
-  Object.keys(localStorage).forEach(key => {
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
     if (key !== 'theme') {
       let value = JSON.parse(localStorage.getItem(key));
-      arrBooks.push(value);
+      arrSelectedBooks.push(value);
     }
-  });
-  return arrBooks;
-}
-
-function getImages(name) {
-  return objShop[name] || '';
-}
-
-function markupListOfStore(stores) {
-  if (!Array.isArray(stores)) {
-    return '';
   }
-
+  return arrSelectedBooks;
+}
+function getImages(name) {
+  if (name in objShop) {
+    const image = objShop[name];
+    return image;
+  } else return '';
+}
+function markupListOfStore(stores) {
   return stores
     .map(({ name, url }) => {
       const picture = getImages(name);
@@ -53,20 +46,17 @@ function markupListOfStore(stores) {
     })
     .join('\n');
 }
-
 function markupShoppingList(arrSelectedBooks) {
   const arrCardsSelectedBooks = arrSelectedBooks.map(
     ({ id, bookName, author, img, description, title, shops }) => {
       const shopsName = markupListOfStore(shops);
-
-      if (!img) {
-        img = '/path/to/default/image';
+      if (img === '' || !img) {
+        img = `${noImage}`;
       }
-
       return `<li class="shoplist-item" data-idcard="${id}">
         <button type="button" class="delate-btn" data-id="${id}">
           <svg class="delate-svg" width="16" height="16">
-            ${trashSvg}
+            ${svg}
           </svg>
         </button>
         <img class="img-shoplist-card" src="${img}" alt="${title}" width="100" height="142" />
@@ -82,8 +72,6 @@ function markupShoppingList(arrSelectedBooks) {
       </li>`;
     },
   );
-
   shoppingList.innerHTML = arrCardsSelectedBooks.join('');
 }
-
-export default arrSelectedBooks;
+export { arrSelectedBooks };

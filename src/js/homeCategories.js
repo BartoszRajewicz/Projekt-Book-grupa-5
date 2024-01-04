@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
           );
           categoriesContainer.appendChild(categoryItem);
         });
-
         if (categories.length > 0) {
           handleCategoryClick(categories[0].list_name, categoriesContainer.children[0]);
         }
       })
+
       .catch(error => console.error('Error fetching categories:', error));
   }
 
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
       .catch(error => console.error('Error fetching books:', error));
-
     booksContainer.style.display = 'grid';
     popularCategoriesContainer.style.display = 'none';
   }
