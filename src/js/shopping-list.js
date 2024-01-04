@@ -40,11 +40,11 @@ function markupListOfStore(stores) {
     .join('\n');
 }
 
-      if (!img) {
-        img = '/path/to/default/image';
-      }
+if (!img) {
+  img = '/path/to/default/image';
+}
 
-      return `<li class="shoplist-item" data-idcard="${id}">
+return `<li class="shoplist-item" data-idcard="${id}">
         <button type="button" class="delate-btn" data-id="${id}">
           <svg class="delate-svg" width="16" height="16">
             ${trashSvg}
@@ -61,10 +61,7 @@ function markupListOfStore(stores) {
           </div>
         </div>
       </li>`;
-    },
-  );
 
-  shoppingList.innerHTML = arrCardsSelectedBooks.join('');
-}
+shoppingList.innerHTML = arrCardsSelectedBooks.join('');
 
 export default arrSelectedBooks;
