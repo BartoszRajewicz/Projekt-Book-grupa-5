@@ -87,12 +87,14 @@
   border-radius: 50%;
   border-style: none;
   cursor: pointer;
+  transition: transform; /* ta linijka zostaje */
 }
 
 .delate-btn:hover,
 .delate-btn:focus {
   transform: scale(1.2);
 }
+
 
 .img-shoplist-card {
   border-radius: 8px;
