@@ -24,11 +24,13 @@
   <body>
     <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony. -->
     <include src="./partials/header.html"></include>
+    <div class="main-container">
     <include src="./partials/home-menu.html"></include>
 
     <include src="./partials/shopping-list.html"></include>
     <include src="./partials/modal.html"></include>
-
+    <include src="./partials/scroll-up-button.html"></include>
+    </div>
     <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
     <script src="./index.js" type="module"></script>
   </body>

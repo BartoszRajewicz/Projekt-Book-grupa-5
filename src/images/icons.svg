@@ -71,5 +71,10 @@
 <path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M28 18.667h-24"></path>
 <path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M22.667 24h-18.667"></path>
 </symbol>
+<symbol id="icon-up" viewBox="0 0 32 32">
+<path fill="#4f2ee8" style="fill: var(--color1, #4f2ee8)" opacity="0.3" d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16 7.163-16 16-16 16 7.163 16 16z"></path>
+<path fill="#4f2ee8" style="fill: var(--color1, #4f2ee8)" d="M29.5 16c0 7.456-6.044 13.5-13.5 13.5s-13.5-6.044-13.5-13.5 6.044-13.5 13.5-13.5 13.5 6.044 13.5 13.5z"></path>
+<path fill="#fff" style="fill: var(--color2, #fff)" d="M11.687 17.35l4.2-4.213c0.050-0.050 0.104-0.085 0.162-0.106s0.121-0.031 0.188-0.031 0.129 0.011 0.188 0.031 0.113 0.056 0.163 0.106l4.212 4.213c0.117 0.117 0.175 0.262 0.175 0.438s-0.063 0.325-0.188 0.45c-0.11 0.117-0.265 0.19-0.438 0.19s-0.328-0.073-0.438-0.19l-3.675-3.675-3.675 3.675c-0.117 0.117-0.26 0.175-0.431 0.175s-0.319-0.063-0.444-0.188c-0.117-0.11-0.19-0.265-0.19-0.438s0.073-0.328 0.19-0.438l0-0z"></path>
+</symbol>
 </defs>
 </svg>
