@@ -9,6 +9,53 @@ body {
     max-width: 356px;
   }
 
+  .category-title-container {
+    background-color: $violetColor;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+
+    .category-title {
+      color: white;
+      font-size: 18px;
+
+      &:last-word {
+        color: $violetColor;
+      }
+    }
+  }
+
+  .category-header {
+    width: 382px;
+    height: 52px;
+    top: 112px;
+    left: 420px;
+    &-black {
+      font-family: DM Sans;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 52px;
+      letter-spacing: -0.04em;
+      text-align: left;
+
+      color: black;
+    }
+
+    &-last-word {
+      font-family: DM Sans;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 52px;
+      letter-spacing: -0.04em;
+      text-align: left;
+
+      color: $violetColor;
+    }
+  }
+
   .category-item {
     margin-bottom: 32px;
     cursor: pointer;
@@ -28,41 +75,61 @@ body {
     line-height: 24px;
     letter-spacing: -2%;
   }
+
   .categories-container::-webkit-scrollbar {
     width: 8px;
     height: 167px;
   }
+
   .categories-container::-webkit-scrollbar-thumb {
     background-color: #e0e0e0;
     border-radius: 12px;
   }
+
   .categories-container::-webkit-scrollbar-track {
     background-color: transparent;
     border-radius: 12px;
   }
+
   .all-categories-header {
     margin-bottom: 10px;
     cursor: pointer;
-    color: $black;
+    color: black;
   }
+
   .books-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 20px;
     transition: opacity 0.5s ease;
+
+    .category-title-container {
+      display: none;
+      margin-bottom: 20px;
+
+      .category-title {
+        &:last-word {
+          color: $violetColor;
+        }
+      }
+    }
   }
+
   .book-card {
     padding: 10px;
     text-align: center;
+
     img {
       max-width: 100%;
       height: auto;
       margin-bottom: 10px;
     }
+
     .book-details {
       margin-top: 10px;
     }
   }
+
   .popular-categories-container {
     display: none;
     margin-top: 20px;

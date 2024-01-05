@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const popupBookInfo = document.getElementById('popupBookInfo');
   const popupClose = document.getElementById('popupClose');
   const addToShoppingListBtn = document.getElementById('addToShoppingListBtn');
+  const categoryHeader = document.getElementById('category-header');
 
   fetchBookCategories();
 
@@ -34,6 +35,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     clickedElement.classList.add('active');
+
+    // Ustawienie tytułu kategorii w nagłówku
+    const words = category.split(' ');
+    const lastWord = words.pop();
+    const categoryName = words.join(' ');
+
+    categoryHeader.innerHTML = `
+      <span class="category-header-black">${categoryName}</span>
+      <span class="category-header-last-word">${lastWord}</span>`;
 
     fetchBooksByCategory(category);
   }
