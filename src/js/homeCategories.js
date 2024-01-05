@@ -1,22 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const allCategoriesHeader = document.getElementById('all-categories-header');
   const categoriesContainer = document.getElementById('categories');
-  const popularCategoriesContainer = document.getElementById('popular-categories-container');
   const booksContainer = document.getElementById('books-container');
+  const popup = document.getElementById('popup');
+  const popupBookInfo = document.getElementById('popupBookInfo');
+  const popupClose = document.getElementById('popupClose');
+  const addToShoppingListBtn = document.getElementById('addToShoppingListBtn');
 
   fetchBookCategories();
-
-  allCategoriesHeader.addEventListener('click', () => {
-    booksContainer.style.display =
-      booksContainer.style.display === 'none' || booksContainer.style.display === ''
-        ? 'grid'
-        : 'none';
-    popularCategoriesContainer.style.display =
-      popularCategoriesContainer.style.display === 'none' ||
-      popularCategoriesContainer.style.display === ''
-        ? 'block'
-        : 'none';
-  });
 
   function fetchBookCategories() {
     fetch('https://books-backend.p.goit.global/books/category-list')
@@ -35,8 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
           handleCategoryClick(categories[0].list_name, categoriesContainer.children[0]);
         }
       })
-
-      .catch(error => console.error('Error fetching categories:', error));
+      .catch(error => console.error('Błąd podczas pobierania kategorii:', error));
   }
 
   function handleCategoryClick(category, clickedElement) {
@@ -56,23 +45,46 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(response => response.json())
       .then(books => {
         if (!books || books.length === 0) {
-          alert('No books found for the selected category.');
+          alert('Brak książek dla wybranej kategorii.');
         } else {
           books.forEach(book => {
             const card = document.createElement('div');
             card.classList.add('book-card');
             card.innerHTML = `
-                    <img src="${book.book_image}" alt="${book.title}">
-                    <div class="book-details">
-                        <h3>${book.title}</h3>
-                        <p>${book.author}</p>
-                    </div>`;
+                          <img src="${book.book_image}" alt="${book.title}">
+                          <div class="book-details">
+                              <h3>${book.title}</h3>
+                              <p>${book.author}</p>
+                          </div>`;
+            card.addEventListener('click', () => openPopup(book));
             booksContainer.appendChild(card);
           });
         }
       })
-      .catch(error => console.error('Error fetching books:', error));
+      .catch(error => console.error('Błąd podczas pobierania książek:', error));
     booksContainer.style.display = 'grid';
-    popularCategoriesContainer.style.display = 'none';
+  }
+
+  function openPopup(book) {
+    popupBookInfo.innerHTML = `
+          <img class="book__img" src="${book.book_image}" alt="${book.title}">
+          <div class="book-info__flex">
+              <h4 class="book__title">${book.title}</h4>
+              <p class="book__author">${book.author}</p>
+              <p class="book__description">${book.description}</p>
+              <div class="trading-platform-icons">
+                  <div></div>
+                  <div></div>
+              </div>
+          </div>`;
+
+    popup.style.display = 'block';
+    popupClose.addEventListener('click', closePopup);
+  }
+
+  function closePopup() {
+    popup.style.display = 'none';
+    popupClose.removeEventListener('click', closePopup);
+    addToShoppingListBtn.removeEventListener('click', addToShoppingList);
   }
 });

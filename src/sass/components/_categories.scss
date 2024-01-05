@@ -1,73 +1,71 @@
 body {
-    font-family: $fontFamily;
+  font-family: $fontFamily;
 
-    .white {}
+  .categories-container {
+    margin-bottom: 20px;
+    overflow-y: auto;
+    max-height: 472px;
+    padding: 10px;
+    max-width: 356px;
+  }
 
-    .categories-container {
-        margin-bottom: 20px;
-        overflow-y: auto;
-        max-height: 472px;
-        padding: 10px;
-        max-width: 356px;
-    }
+  .category-item {
+    margin-bottom: 32px;
+    cursor: pointer;
+    transition: color 0.3s ease, font-weight 0.3s ease;
 
-    .category-item {
-        margin-bottom: 32px;
-        cursor: pointer;
-        transition: color 0.3s ease, font-weight 0.3s ease;
+    &:hover,
+    &:focus {
+      color: $violetColor;
+      font-weight: bold;
+    }
+  }
 
-        &:hover,
-        &:focus {
-            color: $violetColor;
-            font-weight: bold;
-        }
-    }
-
-    .category-item.active {
-        color: $violetColor;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 24px;
-        letter-spacing: -2%;
-    }
-    .categories-container::-webkit-scrollbar {
-         width: 8px;
-         height: 167px;
-     }
-    .categories-container::-webkit-scrollbar-thumb {
-         background-color: #e0e0e0;
-         border-radius: 12px;
-     }
-    .categories-container::-webkit-scrollbar-track {
-     background-color: transparent;
-        border-radius: 12px;
-    }
-    .all-categories-header {
-        margin-bottom: 10px;
-        cursor: pointer;
-        color: $black;
-    }
-    .books-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        grid-gap: 20px;
-        transition: opacity 0.5s ease;
-    }
-    .book-card {
-        padding: 10px;
-        text-align: center;
+  .category-item.active {
+    color: $violetColor;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -2%;
+  }
+  .categories-container::-webkit-scrollbar {
+    width: 8px;
+    height: 167px;
+  }
+  .categories-container::-webkit-scrollbar-thumb {
+    background-color: #e0e0e0;
+    border-radius: 12px;
+  }
+  .categories-container::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 12px;
+  }
+  .all-categories-header {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: $black;
+  }
+  .books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    transition: opacity 0.5s ease;
+  }
+  .book-card {
+    padding: 10px;
+    text-align: center;
     img {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 10px;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
     }
     .book-details {
-        margin-top: 10px;
+      margin-top: 10px;
     }
+  }
+  .popular-categories-container {
+    display: none;
+    margin-top: 20px;
+    font-weight: bold;
+  }
 }
-    .popular-categories-container {
-        display: none;
-        margin-top: 20px;
-        font-weight: bold;
-        }
-    }
