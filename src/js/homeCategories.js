@@ -1,9 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
   const categoriesContainer = document.getElementById('categories');
   const booksContainer = document.getElementById('books-container');
-  const popup = document.getElementById('popup');
-  const popupBookInfo = document.getElementById('popupBookInfo');
-  const popupClose = document.getElementById('popupClose');
+
+  const popup = document.querySelector('.popup');
+  const popupClose = document.querySelector('.popup__close');
+  const popupTitle = document.querySelector('.book__title');
+  const popupAuthor = document.querySelector('.book__author');
+  const popupDescription = document.querySelector('.book__description');
+  const popupImg = document.querySelector('.book__img');
+  const amazonLink = document.querySelector(`.icon-amazon`);
+  const barenNobelLink = document.querySelector(`.icon-barenNobel`);
+
   const addToShoppingListBtn = document.getElementById('addToShoppingListBtn');
   const categoryHeader = document.getElementById('category-header');
   const selectedCategoryHeader = document.getElementById('selected-category-header');
@@ -110,29 +117,44 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(error => console.error('Błąd podczas pobierania książek:', error));
     booksContainer.style.display = 'grid';
   }
-
   function openPopup(book) {
-    popupBookInfo.innerHTML = `
-      <img class="book__img" src="${book.book_image}" alt="${book.title}">
-      <div class="book-info__flex">
-        <h4 class="book__title">${book.title}</h4>
-        <p class="book__author">${book.author}</p>
-        <p class="book__description">${book.description}</p>
-        <div class="trading-platform-icons">
-          <div></div>
-          <div></div>
-        </div>
-      </div>`;
+    popupTitle.textContent = book.title;
+    popupAuthor.textContent = book.author;
+    popupDescription.textContent = book.description;
+    popupImg.src = book.book_image;
+    amazonLink.href = book.buy_links[0].url;
+    barenNobelLink.href = book.buy_links[2].url;
 
     popup.style.display = 'block';
-    popupClose.addEventListener('click', closePopup);
+
+    popupClose.addEventListener(`click`, closePopup);
+    window.addEventListener(`click`, event => {
+      if (event.target == popup) {
+        closePopup();
+      }
+    });
+    document.addEventListener(`keydown`, event => {
+      if (event.key === `Escape`) {
+        closePopup();
+      }
+    });
   }
 
   function closePopup() {
-    popup.style.display = 'none';
-    popupClose.removeEventListener('click', closePopup);
-  }
+    popup.style.display = `none`;
 
+    popupClose.removeEventListener(`click`, closePopup);
+    window.removeEventListener(`click`, event => {
+      if (event.target == popup) {
+        closePopup();
+      }
+    });
+    document.removeEventListener(`keydown`, event => {
+      if (event.key === `Escape`) {
+        closePopup();
+      }
+    });
+  }
   seeMoreBtn.addEventListener('click', () => {
     allCategoriesVisible = true;
     selectedCategoryHeader.innerHTML = '';
