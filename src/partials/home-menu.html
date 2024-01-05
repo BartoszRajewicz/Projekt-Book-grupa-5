@@ -1,29 +1,34 @@
 <div class="categories-container">
-    <div class="all-categories-header" id="all-categories-header">All categories</div>
-    <div class="categories" id="categories"></div>
+  <div class="categories" id="categories">
+    <div class="category-item active" data-category="All categories">All categories</div>
+  </div>
 </div>
 
-<div class="popular-categories-container" id="popular-categories-container">
-    <div>Popular categories</div>
+<div id="category-header"></div>
+
+<div class="card">
+  <div class="category-header"><div id="selected-category-header"></div></div>
+  <div class="books-container" id="books-container"></div>
+  <button id="seeMoreBtn">See more</button>
 </div>
-<div class="books-container" id="books-container"></div>
+
 <div class="container">
-    <div class="charity-container">
-        <div class="titl">
-            <h3>Support Ukraine</h3>
-            <div class="herb-container">
-                <svg class="herb" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/src/images/icons.svg#icon-ukraine"></use>
-                </svg>
-            </div>
-        </div>
-        <div class="charity-slider">
-            <div class="slider" id="charity-container"></div>
-        </div>
-        <div class="arrow-container">
-            <svg class="arrow" xmlns="http://www.w3.org/2000/svg">
-                <use xlink:href="/src/images/icons.svg#icon-arrow_scrollup"></use>
-            </svg>
-        </div>
+  <div class="charity-container">
+    <div class="titl">
+      <h3>Wsparcie dla Ukrainy</h3>
+      <div class="herb-container">
+        <svg class="herb" xmlns="http://www.w3.org/2000/svg">
+          <use xlink:href="/src/images/icons.svg#icon-ukraine"></use>
+        </svg>
+      </div>
     </div>
+    <div class="charity-slider">
+      <div class="slider" id="charity-container"></div>
+    </div>
+    <div class="arrow-container">
+      <svg class="arrow" xmlns="http://www.w3.org/2000/svg">
+        <use xlink:href="/src/images/icons.svg#icon-arrow_scrollup"></use>
+      </svg>
+    </div>
+  </div>
 </div>
