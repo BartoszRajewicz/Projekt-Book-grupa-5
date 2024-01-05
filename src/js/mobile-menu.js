@@ -8,12 +8,20 @@
     openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
     mobileMenu.classList.toggle('is-open');
 
-    const scrollLockMethod = !isMenuOpen ? 'disableBodyScroll' : 'enableBodyScroll';
-    bodyScrollLock[scrollLockMethod](document.body);
+    if (isMenuOpen) {
+      document.body.style.overflow = ''; // Odblokuj przewijanie
+    } else {
+      document.body.style.overflow = 'hidden'; // Zablokuj przewijanie
+    }
   };
 
   openMenuBtn.addEventListener('click', toggleMenu);
   closeMenuBtn.addEventListener('click', toggleMenu);
+
+  // zamykanie menu mobilnego na linkach z id
+  document.querySelectorAll('.mobile__item').forEach(mobileLink => {
+    mobileLink.addEventListener('click', toggleMenu);
+  });
 
   // Close the mobile menu on wider screens if the device orientation changes
   window.matchMedia('(min-width: 768px)').addEventListener('change', e => {

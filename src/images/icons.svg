@@ -67,9 +67,10 @@
 </symbol>
 <symbol id="icon-hamburger" viewBox="0 0 32 32">
 <path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M22.667 13.333h-18.667"></path>
-<path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M2 8h-24"></path>
+<path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M28 8h-24"></path>
 <path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M28 18.667h-24"></path>
 <path stroke-width="2.2857" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M22.667 24h-18.667"></path>
+</symbol>
 </symbol>
 <symbol id="icon-up" viewBox="0 0 32 32">
 <path fill="#4f2ee8" style="fill: var(--color1, #4f2ee8)" opacity="0.3" d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16 7.163-16 16-16 16 7.163 16 16z"></path>
