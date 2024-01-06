@@ -1,3 +1,4 @@
+import './js/mobile-menu';
 import './js/charities';
 import './js/homeCategories';
 import './js/charitiesExport';
