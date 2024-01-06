@@ -927,23 +927,22 @@ ul {
   }
   .mobile__item {
     margin-bottom: 20px;
-    width: 100%;
+    text-align: center;
+    position: relative;
+    transform: translateY(-700%);
   }
-  .mobile-menu .mobile__link {
+  .mobile__item .mobile__link {
     font-family: "DM Sans", sans-serif;
     font-size: 14px;
     font-weight: 500;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    color: #ffffff;
     text-decoration: none;
+    color: #ffffff;
   }
-  .mobile-menu .mobile__link--active {
-    fill: #000000;
+  .mobile__item .mobile__link--active {
+    color: #000000;
     position: relative;
   }
-  .mobile-menu .mobile__link--active::after {
+  .mobile__item .mobile__link--active::after {
     font-weight: 700;
     content: "";
     position: absolute;
@@ -958,7 +957,7 @@ ul {
     pointer-events: none;
     z-index: -1;
   }
-  .mobile-menu .mobile__icon {
+  .mobile__icon {
     fill: #ffffff;
     list-style: none;
     position: absolute;

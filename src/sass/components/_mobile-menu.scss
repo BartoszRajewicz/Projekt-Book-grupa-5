@@ -81,42 +81,41 @@
 
   .mobile__item {
     margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .mobile-menu .mobile__link {
-    font-family: $fontFamily;
-    font-size: 14px;
-    font-weight: 500;
-    width: 100%;
     text-align: center;
     position: relative;
-    color: $white;
-    text-decoration: none;
-  }
+    transform: translateY(-700%);
 
-  .mobile-menu .mobile__link--active {
-    fill: $fontBlack;
-    position: relative;
+    .mobile__link {
+      font-family: $fontFamily;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      color: $white;
 
-    &::after {
-      font-weight: 700;
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 72px;
-      height: 34px;
-      border: 1px solid $yellowColor;
-      border-radius: 36px;
-      background-color: $yellowColor;
-      pointer-events: none;
-      z-index: -1;
+      &--active {
+        color: $fontBlack;
+        position: relative;
+
+        &::after {
+          font-weight: 700;
+          content: '';
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 72px;
+          height: 34px;
+          border: 1px solid $yellowColor;
+          border-radius: 36px;
+          background-color: $yellowColor;
+          pointer-events: none;
+          z-index: -1;
+        }
+      }
     }
   }
 
-  .mobile-menu .mobile__icon {
+  .mobile__icon {
     fill: $white;
     list-style: none;
     position: absolute;
