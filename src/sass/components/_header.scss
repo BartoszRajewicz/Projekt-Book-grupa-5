@@ -6,7 +6,6 @@
   border-radius: 0 0 8px 8px;
   border: 1.5px solid #111111;
   display: flex;
-  justify-content: center;
   margin-bottom: 40px;
 
   &__container {
@@ -75,22 +74,22 @@
   }
 }
 
+.logo-and-nav {
+  display: flex;
+  gap: 92px;
+}
 // nawigacja //
 
 .nav {
   align-self: center;
   display: flex;
-  gap: 10px;
+  gap: 40px;
 }
 
 .nav__item {
   text-decoration: none;
   list-style-type: none;
   position: relative;
-
-  &:not(:last-child) {
-    margin-right: 20px;
-  }
 }
 
 .nav__link {
@@ -118,12 +117,8 @@
       height: 34px;
       border: 1px solid $yellowColor;
       border-radius: 36px;
-      padding: 8px 16px;
       background-color: $yellowColor;
       pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       z-index: -1;
     }
   }
@@ -157,4 +152,16 @@
 }
 .menu-icon {
   display: none;
+}
+
+@media screen and (min-width: 320px) {
+.nav {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+      display: flex;
+    }
 }
