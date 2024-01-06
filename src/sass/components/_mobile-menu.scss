@@ -115,6 +115,16 @@
     }
   }
 
+  .mobile-menu .mobile__img {
+    position: absolute;
+    width: 100%; /* Zmieniona wartość - zajmij całą szerokość okna */
+    height: 200px; /* Zmieniona wartość */
+    bottom: 20px; /* Zmieniona wartość - odległość od dołu */
+    left: 50%;
+    transform: translateX(-50%) rotate(15deg) scale(1.5); /* Dodany scale(1.5) */
+    border-radius: 8px;
+  }
+
   .mobile__icon {
     fill: $white;
     list-style: none;
