@@ -2,7 +2,8 @@
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    position: relative;
+    position: sticky;
     bottom: 140px;
     float: right;
+    display: none;
 };

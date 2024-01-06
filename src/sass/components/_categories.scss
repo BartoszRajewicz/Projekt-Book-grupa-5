@@ -22,7 +22,7 @@ body {
       color: white;
       font-size: 18px;
 
-      &:last-word {
+      &-last-word {
         color: $violetColor;
       }
     }
@@ -108,7 +108,7 @@ body {
       margin-bottom: 20px;
 
       .category-title {
-        &:last-word {
+        &-last-word {
           color: $violetColor;
         }
       }

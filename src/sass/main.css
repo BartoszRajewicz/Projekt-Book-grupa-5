@@ -152,7 +152,9 @@ body .category-title-container .category-title {
   color: white;
   font-size: 18px;
 }
-
+body .category-title-container .category-title-last-word {
+  color: #4f2ee8;
+}
 body .category-header {
   width: 382px;
   height: 52px;
@@ -220,7 +222,7 @@ body .books-container .category-title-container {
   display: none;
   margin-bottom: 20px;
 }
-body .books-container .category-title-container .category-title:last-word {
+body .books-container .category-title-container .category-title-last-word {
   color: #4f2ee8;
 }
 body .book-card {
@@ -995,7 +997,8 @@ ul {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  position: relative;
+  position: sticky;
   bottom: 140px;
   float: right;
+  display: none;
 }
