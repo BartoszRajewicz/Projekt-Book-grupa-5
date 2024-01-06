@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const popupImg = document.querySelector('.book__img');
   const amazonLink = document.querySelector(`.icon-amazon`);
   const barenNobelLink = document.querySelector(`.icon-barenNobel`);
+  const shoppingListBtn = document.querySelector(`.shopping-list-btn`);
+  const receipt = document.querySelector(`.add-receipt`);
 
-  const addToShoppingListBtn = document.getElementById('addToShoppingListBtn');
   const categoryHeader = document.getElementById('category-header');
   const selectedCategoryHeader = document.getElementById('selected-category-header');
   const seeMoreBtn = document.getElementById('seeMoreBtn');
@@ -101,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
           books.forEach(book => {
             const card = document.createElement('div');
             card.classList.add('book-card');
+
             card.innerHTML = `
               <img src="${book.book_image}" alt="${book.title}">
               <div class="book-details">
@@ -126,6 +128,56 @@ document.addEventListener('DOMContentLoaded', function () {
     barenNobelLink.href = book.buy_links[2].url;
 
     popup.style.display = 'block';
+
+    var arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+    function addBookToShoppingList() {
+      arrBooks.push(selectedBook);
+      localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
+
+      shoppingListBtn.textContent = `Remove from the shopping list`;
+      receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
+
+      shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
+      shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
+    }
+
+    function removeBookFromShoppingList() {
+      var newArrBooks = arrBooks.filter(obiekt => obiekt !== selectedBook);
+      arrBooks = newArrBooks;
+      localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
+
+      shoppingListBtn.textContent = `Add to shopping list`;
+      receipt.textContent = ``;
+
+      shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
+      shoppingListBtn.removeEventListener(`click`, removeBookFromShoppingList);
+    }
+
+    const isInArray = arrBooks.includes(JSON.stringify(selectedBook));
+
+    if (!isInArray) {
+      shoppingListBtn.textContent = `Add to shopping list`;
+      receipt.textContent = ``;
+      shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
+    }
+
+    if (isInArray) {
+      shoppingListBtn.textContent = `Remove from the shopping list`;
+      receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
+
+      shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
+    }
+
+    var selectedBook = {
+      id: book._id,
+      author: book.author,
+      img: book.book_image,
+      description: book.description,
+      title: book.title,
+      amazonLink: book.buy_links[0].url,
+      barenNobelLink: book.buy_links[2].url,
+    };
 
     popupClose.addEventListener(`click`, closePopup);
     window.addEventListener(`click`, event => {
@@ -155,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
   seeMoreBtn.addEventListener('click', () => {
     allCategoriesVisible = true;
     selectedCategoryHeader.innerHTML = '';
