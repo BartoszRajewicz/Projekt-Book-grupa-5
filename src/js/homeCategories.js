@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const categoryName = words.join(' ');
 
     categoryHeader.innerHTML = `
-      <span class="category-header-black">${categoryName}</span>
+      <span class="category-header-black">${categoryName} </span>
       <span class="category-header-last-word">${lastWord}</span>`;
 
     allCategoriesVisible = false;
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Błąd podczas pobierania książek:', error));
 
-      booksContainer.style.display = 'grid';
+      // booksContainer.style.display = 'grid';
     }
   }
 
