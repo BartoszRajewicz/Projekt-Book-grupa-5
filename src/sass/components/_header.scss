@@ -1,6 +1,8 @@
 @import './globals';
 
 .page-header {
+  max-width: 1440px;
+  margin: auto;
   padding: 0 24px;
   height: 72px;
   border-radius: 0 0 8px 8px;
