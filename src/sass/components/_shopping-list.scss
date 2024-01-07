@@ -2,7 +2,7 @@
 
 .section-shopping-list {
   max-width: 1440px;
-    margin: auto;
+  margin: auto;
   // padding-top: 40px;
   padding-bottom: 40px;
   // min-height: 100vh;
@@ -208,6 +208,18 @@
   height: auto;
 }
 
+.is-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 /* PAGINACJAAA*/
 
 .container-pagination {
@@ -402,10 +414,6 @@
   .container-shopping-list {
     display: flex;
     justify-content: space-between;
-  }
-
-  .wrap-support {
-    display: block;
   }
 
   .container-shoplist {
