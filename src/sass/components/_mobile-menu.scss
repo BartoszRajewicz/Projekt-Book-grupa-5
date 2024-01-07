@@ -1,0 +1,141 @@
+@media (max-width: 375px) {
+  .nav {
+    display: none;
+  }
+
+  .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#4f2ee8, #dcdcdc);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+  }
+  .logo {
+    margin-left: 24px;
+  }
+
+  .js-menu-container.is-open {
+    transform: translateX(0);
+  }
+
+  .header-content {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 72px;
+    border-radius: 0 0 8px 8px;
+    border: 1.5px solid #111111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 1000;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+  }
+
+  .menu-icon {
+    display: block;
+    stroke: $fontBlack;
+
+    &:hover {
+      stroke: $violetColor;
+    }
+  }
+  .switcher {
+    display: flex;
+    gap: 14px;
+  }
+
+  .menu-toggle-close {
+    display: block;
+    fill: $fontBlack;
+    stroke: $fontBlack;
+    margin-right: 14px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-menu {
+    background-image: url(/src/images/books-mobile.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 380px 40px;
+    flex-grow: 1;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%; /* Ustaw pełną szerokość tła */
+      height: 20px; /* Ustaw wysokość tła według potrzeb */
+      bottom: 50px;
+      left: 0;
+      z-index: -1; /* Umieść tło za treścią mobile-menu */
+    }
+  }
+
+  .mobile__item {
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    transform: translateY(-700%);
+
+    .mobile__link {
+      font-family: $fontFamily;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      color: $white;
+
+      &--active {
+        color: $fontBlack;
+        position: relative;
+
+        &::after {
+          font-weight: 700;
+          content: '';
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 72px;
+          height: 34px;
+          border: 1px solid $yellowColor;
+          border-radius: 36px;
+          background-color: $yellowColor;
+          pointer-events: none;
+          z-index: -1;
+        }
+      }
+    }
+  }
+
+  .mobile__icon {
+    fill: $white;
+    list-style: none;
+    position: absolute;
+    top: 80%;
+    transform: translateY(-90%);
+    right: -20px;
+  }
+}

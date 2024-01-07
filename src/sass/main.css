@@ -154,7 +154,9 @@ body .category-title-container .category-title {
   color: white;
   font-size: 18px;
 }
+
 body .category-title-container .category-title-last-word {
+  
   color: #4f2ee8;
 }
 body .category-header {
@@ -296,7 +298,8 @@ ul {
   border: 0;
   padding: 0;
   white-space: nowrap;
-  clip-path: inset(100%);
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
@@ -736,7 +739,9 @@ ul {
   border-radius: 0 0 8px 8px;
   border: 1.5px solid #111111;
   display: flex;
-  margin-bottom: 40px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
 }
 .page-header__container {
   display: flex;
@@ -768,7 +773,6 @@ ul {
   right: 3px;
   bottom: 0;
   background: radial-gradient(rgb(79, 46, 232), rgb(255, 255, 255));
-  -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 20px;
 }
@@ -780,7 +784,6 @@ ul {
   left: 1px;
   top: 2px;
   background-color: #ffffff;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 50%;
 }
@@ -791,8 +794,6 @@ ul {
   box-shadow: 0 0 1px #f6f6f6;
 }
 .page-header input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
   transform: translateX(18px);
 }
 
@@ -853,22 +854,19 @@ ul {
   margin-left: 20px;
 }
 
-.menu-container {
+.header-content {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1000;
+}
+
+.mobile-menu {
+  display: none;
 }
 
 .menu-toggle {
   display: none;
 }
 
-.menu-icon {
+.books__img {
   display: none;
 }
 
@@ -880,6 +878,133 @@ ul {
 @media screen and (min-width: 768px) {
   .nav {
     display: flex;
+  }
+}
+@media (max-width: 375px) {
+  .nav {
+    display: none;
+  }
+  .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#4f2ee8, #dcdcdc);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+  }
+  .logo {
+    margin-left: 24px;
+  }
+  .js-menu-container.is-open {
+    transform: translateX(0);
+  }
+  .header-content {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 72px;
+    border-radius: 0 0 8px 8px;
+    border: 1.5px solid #111111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 1000;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+  }
+  .menu-icon {
+    display: block;
+    stroke: #000000;
+  }
+  .menu-icon:hover {
+    stroke: #4f2ee8;
+  }
+  .switcher {
+    display: flex;
+    gap: 14px;
+  }
+  .menu-toggle-close {
+    display: block;
+    fill: #000000;
+    stroke: #000000;
+    margin-right: 14px;
+    width: 20px;
+    height: 20px;
+  }
+  .mobile-menu {
+    background-image: url(/src/images/books-mobile.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 380px 40px;
+    flex-grow: 1;
+    position: relative;
+  }
+  .mobile-menu::after {
+    content: "";
+    position: absolute;
+    width: 100%; /* Ustaw pełną szerokość tła */
+    height: 20px; /* Ustaw wysokość tła według potrzeb */
+    bottom: 50px;
+    left: 0;
+    z-index: -1; /* Umieść tło za treścią mobile-menu */
+  }
+  .mobile__item {
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    transform: translateY(-700%);
+  }
+  .mobile__item .mobile__link {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .mobile__item .mobile__link--active {
+    color: #000000;
+    position: relative;
+  }
+  .mobile__item .mobile__link--active::after {
+    font-weight: 700;
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 34px;
+    border: 1px solid #eac645;
+    border-radius: 36px;
+    background-color: #eac645;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .mobile__icon {
+    fill: #ffffff;
+    list-style: none;
+    position: absolute;
+    top: 80%;
+    transform: translateY(-90%);
+    right: -20px;
   }
 }
 .popup {
@@ -1011,4 +1136,3 @@ ul {
   bottom: 140px;
   float: right;
   display: none;
-}
