@@ -1,0 +1,126 @@
+#darkSwitch {
+    display: flex;
+    margin-left: auto;
+}
+
+.switch {
+    width: 40px;
+    height: 20px;
+    position: relative;
+    display: block;
+    background: linear-gradient(180deg, #4f2ee8 0%, #dcdcdc 100%);
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1) inset;
+    border-radius: 200px;
+    cursor: pointer;
+
+}
+
+.switch:after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background: rgba(247, 247, 247, 1);
+    border-radius: 180px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.switch p {
+    display: none;
+}
+
+.dark {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.dark:checked+.switch {
+    background: linear-gradient(180deg, #4f2ee8 0%, #686868 100%);
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1) inset;
+}
+
+.dark:checked+.switch:after {
+    right: 24px;
+    transform: translateX(110%);
+    background: rgba(255, 255, 255, 1), rgba(247, 247, 247, 1);
+}
+
+.switch,
+.switch:after {
+    transition: 0.3s;
+}
+
+[data-theme='dark'] {
+    background-color: #202024;
+    color: white;
+    .nav__link{
+        color: white;
+        &--active {
+             &::after {
+                    z-index: 2;
+                    content: 'HOME';
+                    color: black;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+        }
+    }
+    .category-item.active{
+        color: #EAC645;
+        }
+    .category-item{
+        &:hover,
+        &:focus{
+            color: #EAC645;
+        }
+    }
+    .category-header {
+        &-black {
+                color: white;
+            }
+        }
+    .page-header{
+        border: 1.5px solid white;
+        background-color: #111;
+    }
+    .categories-container::-webkit-scrollbar-thumb{
+        background-color: rgba(17, 17, 17, 0.60);;
+    }
+    .categories-container{
+        scrollbar-color: rgba(17, 17, 17, 0.60);
+    }
+    .nav__icon {
+        filter: brightness(0) invert(1);
+    }
+    
+    .header__icon{
+        filter: brightness(0) invert(1);
+    }
+    .book-card .book-details {
+    h3 {
+        color: #FFF;
+    }
+    p {
+        color: #B4AFAF;
+    }
+    };
+    .popup__content {
+        background: #202024;
+        border: 2px solid #FFF;
+        border-radius: 18px;
+    }
+    .shopping-list-btn {
+        background: #202024;
+        color: white;
+    }
+    .popup-close {
+        filter: brightness(0) invert(1);
+    }
+    .icon-amazon {
+        filter: brightness(0) invert(1);
+    }
+}
