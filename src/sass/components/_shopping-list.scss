@@ -209,8 +209,9 @@
 /* PAGINACJAAA*/
 
 .container-pagination {
-  display: flex;
+  display: none;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .pagination {
@@ -384,6 +385,9 @@
     max-width: 48px;
     max-height: 28px;
   }
+  .container-pagination {
+    margin-top: 40px;
+  }
 }
 
 /* +++++++++++ Desktop ++++++++++++ */
@@ -435,5 +439,9 @@
 
   .wrapper-card-shoplist-footer {
     max-width: 808px;
+  }
+
+  .container-pagination {
+    margin-top: 40px;
   }
 }

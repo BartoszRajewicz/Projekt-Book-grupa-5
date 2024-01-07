@@ -25,13 +25,13 @@ doubleArrowRight.addEventListener('click', function doubleNextArrow() {
   }
 });
 
-function activeLink() {
+link.addEventListener('click', function activeLink(event) {
   for (l of link) {
     l.classList.remove('active');
   }
   event.target.classList.add('active');
   currentValue = event.target.value;
-}
+});
 
 arrowLeft.addEventListener('click', function backArrow() {
   if (currentValue > 1) {
