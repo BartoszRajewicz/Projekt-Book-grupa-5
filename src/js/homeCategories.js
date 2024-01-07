@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const amazonLink = document.querySelector('.icon-amazon');
   const barenNobelLink = document.querySelector('.icon-barenNobel');
   const shoppingListBtn = document.querySelector('.shopping-list-btn');
+  const receipt = document.querySelector(`.add-receipt`);
 
   const categoryHeader = document.getElementById('category-header');
   const selectedCategoryHeader = document.getElementById('selected-category-header');
@@ -118,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
       arrBooks.push(selectedBook);
       localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
 
+      receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
       shoppingListBtn.textContent = `Remove from the shopping list`;
       shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
       shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
@@ -129,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
 
       shoppingListBtn.textContent = `Add to shopping list`;
+      receipt.textContent = ``;
+
       shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
       shoppingListBtn.removeEventListener(`click`, removeBookFromShoppingList);
     }
@@ -137,11 +141,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!isInArray) {
       shoppingListBtn.textContent = `Add to shopping list`;
+      receipt.textContent = ``;
       shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
     }
 
     if (isInArray) {
       shoppingListBtn.textContent = `Remove from the shopping list`;
+      receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
       shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
     }
 
