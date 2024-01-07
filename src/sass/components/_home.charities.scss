@@ -1,5 +1,5 @@
 img {
-  width: 100px;
+  // width: 100px;
   height: auto;
   cursor: pointer;
   margin: 10px;
@@ -11,8 +11,11 @@ img {
   background: radial-gradient(circle at top, #4f2ee8, rgba(93, 53, 202, 0.386));
   overflow: hidden;
   position: relative;
-  height: 29.625rem;
-  width: 22.25rem;
+  // height: 29.625rem;
+  // width: 22.25rem;
+  // width: 100%;
+  padding: 28px 40px 20px 40px;
+
 }
 
 .charity-item {
@@ -28,20 +31,22 @@ img {
 
   img {
     margin-left: 20px;
+    max-width: 131px;
+    max-height: 32px;
   }
 }
 
 .titl {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 40px;
+  // justify-content: space-between;
+  // padding-left: 40px;
   margin-bottom: 12px;
 }
 
-h3 {
-  margin-right: 40px;
-}
+// h3 {
+//   margin-right: 40px;
+// }
 
 .herb {
   fill: #ffffff;
@@ -53,11 +58,12 @@ h3 {
   margin-right: 20px;
 }
 .charity-slider {
-  padding-left: 40px;
+  // padding-left: 40px;
 
   height: 292px;
   overflow: hidden;
   position: relative;
+  margin-bottom: 72px;
 
   .slider {
     transition: transform 0.5s ease-in-out;
@@ -93,4 +99,15 @@ footer {
       transform: scaleY(-1);
     }
   }
+}
+
+.container_home{
+      max-width: 335px;
+        max-height: 460px;
+      
+      
+        @media screen and (min-width: 1440px) {
+          max-width: 356px;
+          max-height: 474px;
+        }
 }
