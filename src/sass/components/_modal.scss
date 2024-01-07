@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   z-index: 100;
-  transition: 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &__in {
     width: 579px;
@@ -19,7 +19,7 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    transition: 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__content {
@@ -30,11 +30,20 @@
   }
 
   &__close {
+    width: 28px;
+    height: 28px;
+    background: url(../images/x-close.svg), no-repeat;
+
     position: absolute;
     top: 24px;
     right: 24px;
+
     &:hover {
+      background: url(../images/x-close-violet.svg), no-repeat;
       cursor: pointer;
+    }
+    &:focus {
+      background: url(../images/x-close-violet.svg), no-repeat;
     }
   }
 
@@ -100,7 +109,7 @@
   .shopping-list-btn {
     background: $backgroundColor;
     display: flex;
-    width: 499px;
+    // width: 499px;
     padding: 20px;
     justify-content: center;
     align-items: center;
@@ -116,7 +125,12 @@
     text-transform: uppercase;
 
     &:hover {
-      cursor: pointer;
+      background: $violetColor;
+      color: $white;
+    }
+    &:focus {
+      background: $violetColor;
+      color: $white;
     }
   }
   .add-receipt {
@@ -128,5 +142,92 @@
     line-height: 14px;
     letter-spacing: -0.48px;
     margin-top: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popup {
+    &__in {
+      width: 335px;
+    }
+
+    &__content {
+      padding: 40 24;
+      margin: 0;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__close {
+      width: 24px;
+      height: 24px;
+      background: url(../images/x-close.svg), no-repeat;
+
+      top: 12px;
+      right: 12px;
+
+      &:hover {
+        background: url(../images/x-close-violet.svg), no-repeat;
+        cursor: pointer;
+      }
+      &:focus {
+        background: url(../images/x-close-violet.svg), no-repeat;
+      }
+    }
+
+    &__flex {
+      flex-direction: column;
+    }
+
+    .book {
+      &__img {
+        width: 287px;
+        height: 408px;
+        margin: 0 0 14px 0;
+      }
+      &__title {
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: -0.64px;
+        margin: 0 0 4px 0;
+      }
+      &__author {
+        font-size: 12px;
+        letter-spacing: -0.48px;
+        margin: 0 0 18px 0;
+      }
+      &__description {
+        font-size: 14px;
+        margin: 0 0 14px 0;
+      }
+    }
+    .trading-platform-icons {
+      margin: 0;
+    }
+    .shopping-list-btn {
+      // width: 211px;
+      font-size: 14px;
+      font-style: normal;
+      line-height: 18px;
+      letter-spacing: -0.14px;
+      text-transform: uppercase;
+      margin-top: 44px;
+
+      &:hover {
+        background: $violetColor;
+        color: $white;
+      }
+      &:focus {
+        background: $violetColor;
+        color: $white;
+      }
+    }
+    .add-receipt {
+      width: 242px;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 12px;
+      letter-spacing: -0.4px;
+    }
   }
 }
