@@ -72,11 +72,26 @@
   }
 
   .mobile-menu {
+    background-image: url(/src/images/books-mobile.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 92px 20px 20px;
+    padding: 380px 40px;
     flex-grow: 1;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%; /* Ustaw pełną szerokość tła */
+      height: 20px; /* Ustaw wysokość tła według potrzeb */
+      bottom: 50px;
+      left: 0;
+      z-index: -1; /* Umieść tło za treścią mobile-menu */
+    }
   }
 
   .mobile__item {
@@ -113,16 +128,6 @@
         }
       }
     }
-  }
-
-  .mobile-menu .mobile__img {
-    position: absolute;
-    width: 100%; /* Zmieniona wartość - zajmij całą szerokość okna */
-    height: 200px; /* Zmieniona wartość */
-    bottom: 20px; /* Zmieniona wartość - odległość od dołu */
-    left: 50%;
-    transform: translateX(-50%) rotate(15deg) scale(1.5); /* Dodany scale(1.5) */
-    border-radius: 8px;
   }
 
   .mobile__icon {
