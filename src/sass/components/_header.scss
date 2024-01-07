@@ -8,7 +8,9 @@
   border-radius: 0 0 8px 8px;
   border: 1.5px solid #111111;
   display: flex;
-  margin-bottom: 40px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
 
   &__container {
     display: flex;
@@ -93,34 +95,31 @@
   margin-left: 20px;
 }
 
-// menu mobilne //
-
-.menu-container {
+.header-content {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1000;
+}
+
+.mobile-menu {
+  display: none;
 }
 
 .menu-toggle {
   display: none;
 }
-.menu-icon {
+
+.books__img {
   display: none;
 }
+// menu mobilne //
 
 @media screen and (min-width: 320px) {
-.nav {
+  .nav {
     display: none;
   }
 }
 
 @media screen and (min-width: 768px) {
   .nav {
-      display: flex;
-    }
+    display: flex;
+  }
 }
