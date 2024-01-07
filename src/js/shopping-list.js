@@ -2,6 +2,7 @@ import { trashSvg, amazon, baren } from './charitiesExport';
 export const refs = {
   shoppingList: document.querySelector('.shopping-list'),
   emptyList: document.querySelector('.empty-list'),
+  shoppingListBtn: document.querySelector('.shopping-list-btn'),
 };
 const { shoppingList, emptyList } = refs;
 const objShop = {
@@ -69,6 +70,8 @@ function markupShoppingList(arrSelectedBooks) {
       </li>`;
     },
   );
-  shoppingList.innerHTML = arrCardsSelectedBooks.join('');
+  shoppingListBtn.addEventListener('click', () => {
+    shoppingList.innerHTML = arrCardsSelectedBooks.join('');
+  })
 }
 export default arrSelectedBooks;
