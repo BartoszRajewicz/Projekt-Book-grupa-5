@@ -8,14 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const popupAuthor = document.querySelector('.book__author');
   const popupDescription = document.querySelector('.book__description');
   const popupImg = document.querySelector('.book__img');
-  const amazonLink = document.querySelector(`.icon-amazon`);
-  const barenNobelLink = document.querySelector(`.icon-barenNobel`);
-  const shoppingListBtn = document.querySelector(`.shopping-list-btn`);
-  const receipt = document.querySelector(`.add-receipt`);
+  const amazonLink = document.querySelector('.icon-amazon');
+  const barenNobelLink = document.querySelector('.icon-barenNobel');
+  const shoppingListBtn = document.querySelector('.shopping-list-btn');
 
   const categoryHeader = document.getElementById('category-header');
   const selectedCategoryHeader = document.getElementById('selected-category-header');
-  const seeMoreBtn = document.getElementById('seeMoreBtn');
 
   let allCategoriesVisible = true;
 
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             categoriesContainer.appendChild(categoryItem);
           });
-          displayPopularCategories(categories);
           fetchBooksByCategory('All categories');
         } else {
           console.error('Brak dostępnych kategorii.');
@@ -44,22 +41,14 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .catch(error => console.error('Błąd podczas pobierania kategorii:', error));
   }
-
-  function displayPopularCategories(categories) {
-    const popularCategories = categories.slice(0, 4);
-    popularCategories.forEach(category => {
-      const categoryItem = document.createElement('div');
-      categoryItem.classList.add('category-item');
-      categoryItem.textContent = category.list_name;
-      categoryItem.setAttribute('data-category', category.list_name);
-      categoryItem.addEventListener('click', () =>
-        handleCategoryClick(category.list_name, categoryItem),
-      );
-      selectedCategoryHeader.appendChild(categoryItem);
-    });
-  }
-
   function handleCategoryClick(category, clickedElement) {
+    const categoryHeader = document.getElementById('category-header');
+
+    if (!categoryHeader) {
+      console.error('Nie można odnaleźć elementu o identyfikatorze "category-header".');
+      return;
+    }
+
     document.querySelectorAll('.category-item').forEach(el => {
       el.classList.remove('active');
     });
@@ -74,20 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
       <span class="category-header-black">${categoryName}</span>
       <span class="category-header-last-word">${lastWord}</span>`;
 
-    if (category === 'All categories') {
-      if (!allCategoriesVisible) {
-        allCategoriesVisible = true;
-        selectedCategoryHeader.innerHTML = '';
-        displayPopularCategories(categories);
-      } else {
-        allCategoriesVisible = false;
-        selectedCategoryHeader.innerHTML = '';
-        fetchBooksByCategory(category);
-      }
-    } else {
-      allCategoriesVisible = false;
-      selectedCategoryHeader.innerHTML = '';
-      seeMoreBtn.style.display = 'none';
+    allCategoriesVisible = false;
+    selectedCategoryHeader.innerHTML = '';
+
+    if (category !== 'All categories') {
       fetchBooksByCategory(category);
     }
   }
@@ -95,30 +74,34 @@ document.addEventListener('DOMContentLoaded', function () {
   function fetchBooksByCategory(category) {
     booksContainer.innerHTML = '';
 
-    fetch(`https://books-backend.p.goit.global/books/category?category=${category}`)
-      .then(response => response.json())
-      .then(books => {
-        if (books && books.length > 0) {
-          books.forEach(book => {
-            const card = document.createElement('div');
-            card.classList.add('book-card');
+    if (category !== 'All categories') {
+      fetch(`https://books-backend.p.goit.global/books/category?category=${category}`)
+        .then(response => response.json())
+        .then(books => {
+          if (books && books.length > 0) {
+            books.forEach(book => {
+              const card = document.createElement('div');
+              card.classList.add('book-card');
 
-            card.innerHTML = `
-              <img src="${book.book_image}" alt="${book.title}">
-              <div class="book-details">
-                <h3>${book.title}</h3>
-                <p>${book.author}</p>
-              </div>`;
-            card.addEventListener('click', () => openPopup(book));
-            booksContainer.appendChild(card);
-          });
-        } else {
-          console.warn('Brak książek dla wybranej kategorii.');
-        }
-      })
-      .catch(error => console.error('Błąd podczas pobierania książek:', error));
-    booksContainer.style.display = 'grid';
+              card.innerHTML = `
+                <img src="${book.book_image}" alt="${book.title}">
+                <div class="book-details">
+                  <h3>${book.title}</h3>
+                  <p>${book.author}</p>
+                </div>`;
+              card.addEventListener('click', () => openPopup(book));
+              booksContainer.appendChild(card);
+            });
+          } else {
+            console.warn('Brak książek dla wybranej kategorii.');
+          }
+        })
+        .catch(error => console.error('Błąd podczas pobierania książek:', error));
+
+      booksContainer.style.display = 'grid';
+    }
   }
+
   function openPopup(book) {
     popupTitle.textContent = book.title;
     popupAuthor.textContent = book.author;
@@ -136,8 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
 
       shoppingListBtn.textContent = `Remove from the shopping list`;
-      receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
-
       shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
       shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
     }
@@ -148,8 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
 
       shoppingListBtn.textContent = `Add to shopping list`;
-      receipt.textContent = ``;
-
       shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
       shoppingListBtn.removeEventListener(`click`, removeBookFromShoppingList);
     }
@@ -158,14 +137,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!isInArray) {
       shoppingListBtn.textContent = `Add to shopping list`;
-      receipt.textContent = ``;
       shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
     }
 
     if (isInArray) {
       shoppingListBtn.textContent = `Remove from the shopping list`;
-      receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
-
       shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
     }
 
@@ -207,17 +183,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-
-  seeMoreBtn.addEventListener('click', () => {
-    allCategoriesVisible = true;
-    selectedCategoryHeader.innerHTML = '';
-    displayPopularCategories([]);
-    fetchBooksByCategory('All categories');
-  });
-
-  document.getElementById('categories').addEventListener('click', event => {
-    if (event.target.dataset.category === 'All categories') {
-      window.location.href = 'index.html';
-    }
-  });
 });
