@@ -6,19 +6,7 @@
           <use href="./images/icons.svg#icon-logo"></use>
         </svg>
       </a>
-      <nav class="nav">
-        <div class="nav__item">
-          <a class="nav__link nav__link--active" href="./index.html">HOME</a>
-        </div>
-        <div class="nav__item">
-          <a class="nav__link" href="./shopping.html">
-            SHOPPING LIST
-            <svg class="nav__icon" width="20px" height="20px">
-              <use href="./images/icons.svg#icon-shopping_cart"></use>
-            </svg>
-          </a>
-        </div>
-      </nav>
+      <include src="./partials/navigation.html"></include>
     </div>
     <!-- switcher -->
     <div>
@@ -35,26 +23,5 @@
       </svg>
     </button>
   </div>
+  <include src="./partials/mobile-menu.html"></include>
 </header>
-
-<div class="menu-container js-menu-container" id="mobile-menu">
-  <button class="menu-toggle js-close-menu">
-    <svg class="menu-toggle-close" width="14" height="14">
-      <use href="./images/icons.svg#icon-x-close"></use>
-    </svg>
-  </button>
-  <nav class="mobile-menu">
-    <div class="mobile__item">
-      <a class="mobile__link" href="./index.html">HOME</a>
-    </div>
-    <div class="mobile__item">
-      <a class="mobile__link" href="#">
-        SHOPPING LIST
-        <svg class="nav__icon" width="20px" height="20px">
-          <use xlinkhref="./images/icons.svg#icon-shopping_cart"></use>
-        </svg>
-        </svg>
-      </a>
-    </div>
-  </nav>
-</div>

@@ -6,4 +6,3 @@ import './js/scroll-up-button';
 import './js/shop-pagination';
 import './js/dark-mode-switch';
 import './js/shopOnClickDeleteBtn';
-

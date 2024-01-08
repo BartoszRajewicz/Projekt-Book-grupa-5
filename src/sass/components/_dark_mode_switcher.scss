@@ -58,16 +58,6 @@
     color: white;
     .nav__link{
         color: white;
-        &--active {
-             &::after {
-                    z-index: 2;
-                    content: 'HOME';
-                    color: black;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-        }
     }
     .category-item.active{
         color: #EAC645;
@@ -117,10 +107,25 @@
         background: #202024;
         color: white;
     }
-    .popup-close {
+    div.popup-close {
         filter: brightness(0) invert(1);
     }
     .icon-amazon {
         filter: brightness(0) invert(1);
+    }
+    .container-shoplist {
+        h2 {
+            color: white;
+        }
+    }
+    .menu-icon {
+        filter: brightness(0) invert(1);
+    }
+    .nav__link__sun {
+        &--active{
+            &::after{
+                color: black;
+            }
+        }
     }
 }
