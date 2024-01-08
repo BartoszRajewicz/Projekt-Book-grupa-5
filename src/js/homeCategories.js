@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const amazonLink = document.querySelector('.icon-amazon');
   const barenNobelLink = document.querySelector('.icon-barenNobel');
   const shoppingListBtn = document.querySelector('.shopping-list-btn');
-  const receipt = document.querySelector('.add-receipt');
+  const receipt = document.querySelector(`.add-receipt`);
 
+  const categoryHeader = document.getElementById('category-header');
   const selectedCategoryHeader = document.getElementById('selected-category-header');
 
   let allCategoriesVisible = true;
@@ -34,104 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             categoriesContainer.appendChild(categoryItem);
           });
-          fetchTopCategories();
+          fetchBooksByCategory('All categories');
         } else {
           console.error('Brak dostępnych kategorii.');
         }
       })
       .catch(error => console.error('Błąd podczas pobierania kategorii:', error));
   }
-
-  function fetchTopCategories() {
-    const topCategoriesEndpoint = 'https://books-backend.p.goit.global/books/top-books';
-
-    fetch(topCategoriesEndpoint)
-      .then(response => response.json())
-      .then(topCategoriesData => {
-        if (topCategoriesData && topCategoriesData.length > 0) {
-          const categoriesList = document.createElement('div');
-          categoriesList.classList.add('home_gallery');
-
-          const bestSellersHeader = document.createElement('h2');
-          bestSellersHeader.innerHTML = `
-            <span class="category-header-black">
-              Best Sellers
-            </span>
-            <span class="category-header-last-word">
-              Books
-            </span>
-          `;
-          bestSellersHeader.classList.add('best-sellers-header');
-          categoriesList.appendChild(bestSellersHeader);
-
-          topCategoriesData.slice(0, 4).forEach(category => {
-            const categoryContainer = document.createElement('div');
-            categoryContainer.classList.add('book-category', 'card');
-            categoryContainer.setAttribute('data-category', category.list_name);
-
-            const categoryName = category.list_name.split(' ');
-            const lastWord = categoryName.pop();
-            const categoryNameWithoutLastWord = categoryName.join(' ');
-
-            const categoryHeader = document.createElement('h2');
-            categoryHeader.innerHTML = `
-              <span style="
-                font-size: 14px;
-                line-height: 24px;
-                font-family: 'DM Sans', sans-serif;
-                font-weight: 400;
-                color: #B4AFAF;
-                letter-spacing: 0.42px;
-                text-transform: uppercase;">
-                ${categoryNameWithoutLastWord}
-              </span>
-            `;
-            categoryContainer.appendChild(categoryHeader);
-
-            const booksList = document.createElement('div');
-            booksList.classList.add('books-list', 'home_gallery');
-            booksList.setAttribute('data-category', category.list_name);
-
-            category.books.slice(0, 4).forEach(book => {
-              const card = document.createElement('div');
-              card.classList.add('book-card');
-
-              card.innerHTML = `
-                <img src="${book.book_image}" alt="${book.title}">
-                <div class="book-details">
-                  <h3>${book.title}</h3>
-                  <p>${book.author}</p>
-                </div>`;
-              card.addEventListener('click', () => openPopup(book));
-              booksList.appendChild(card);
-            });
-
-            const seeMoreButton = document.createElement('button');
-            seeMoreButton.textContent = 'See More';
-            seeMoreButton.classList.add('see-more-button');
-            seeMoreButton.addEventListener('click', () => seeMoreButtonClick(category.list_name));
-            categoryContainer.appendChild(seeMoreButton);
-
-            categoryContainer.appendChild(booksList);
-            categoriesList.appendChild(categoryContainer);
-          });
-
-          booksContainer.appendChild(categoriesList);
-
-          document.querySelectorAll('.book-category').forEach(category => {
-            category.addEventListener('click', function () {
-              const categoryName = this.getAttribute('data-category');
-              const categoryBooksList = this.querySelector('.books-list');
-              updateBooksList(categoryName, categoryBooksList);
-            });
-          });
-        } else {
-          console.error('Brak danych o najlepszych kategoriach.');
-        }
-      })
-      .catch(error => console.error('Błąd podczas pobierania najlepszych kategorii:', error));
-  }
-
   function handleCategoryClick(category, clickedElement) {
     const categoryHeader = document.getElementById('category-header');
 
@@ -151,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const categoryName = words.join(' ');
 
     categoryHeader.innerHTML = `
-      <span class="category-header-black">${categoryName}</span>
+      <span class="category-header-black">${categoryName} </span>
       <span class="category-header-last-word">${lastWord}</span>`;
 
     allCategoriesVisible = false;
@@ -160,10 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (category !== 'All categories') {
       fetchBooksByCategory(category);
     }
-  }
-
-  function seeMoreButtonClick(category) {
-    console.log(`See More button clicked for category: ${category}`);
   }
 
   function fetchBooksByCategory(category) {
@@ -195,34 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // booksContainer.style.display = 'grid';
     }
-  }
-
-  function updateBooksList(category, booksListContainer) {
-    fetch(`https://books-backend.p.goit.global/books/category?category=${category}`)
-      .then(response => response.json())
-      .then(books => {
-        if (books && books.length > 0) {
-          // Wyczyść poprzednią listę książek
-          booksListContainer.innerHTML = '';
-
-          books.slice(0, 4).forEach(book => {
-            const card = document.createElement('div');
-            card.classList.add('book-card');
-
-            card.innerHTML = `
-              <img src="${book.book_image}" alt="${book.title}">
-              <div class="book-details">
-                <h3>${book.title}</h3>
-                <p>${book.author}</p>
-              </div>`;
-            card.addEventListener('click', () => openPopup(book));
-            booksListContainer.appendChild(card);
-          });
-        } else {
-          console.warn('Brak książek dla wybranej kategorii.');
-        }
-      })
-      .catch(error => console.error('Błąd podczas pobierania książek:', error));
   }
 
   function openPopup(book) {
