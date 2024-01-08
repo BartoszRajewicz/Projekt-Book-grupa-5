@@ -110,9 +110,9 @@ document.addEventListener('DOMContentLoaded', function () {
             seeMoreButton.textContent = 'See More';
             seeMoreButton.classList.add('see-more-button');
             seeMoreButton.addEventListener('click', () => seeMoreButtonClick(category.list_name));
+            categoryContainer.appendChild(booksList);
             categoryContainer.appendChild(seeMoreButton);
 
-            categoryContainer.appendChild(booksList);
             categoriesList.appendChild(categoryContainer);
           });
 

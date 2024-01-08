@@ -38,3 +38,30 @@
     width: 100%;
   }
 }
+button.see-more-button {
+  width: 124px; /* Szerokość */
+  height: 46px;
+  background: #f6f6f6;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 40px;
+  border: 2px solid;
+  border-color: #4f2ee8;
+  margin-top: 40px;
+  margin-left: auto;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: -0.18px;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    background: #4f2ee8;
+    color: #ffffff;
+  }
+}
