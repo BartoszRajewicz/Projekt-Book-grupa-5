@@ -33,6 +33,13 @@ function checkLocalStorage() {
 function getImages(name) {
   return objShop[name] || '';
 }
+
+// function getImages(name) {
+//   if (name in objShop) {
+//     const image = objShop[name];
+//     return image;
+//   } else return '';
+// }
 function markupListOfStore(stores) {
   if (!Array.isArray(stores)) {
     return '';
@@ -70,8 +77,8 @@ function markupShoppingList(arrSelectedBooks) {
       </li>`;
     },
   );
-  shoppingListBtn.addEventListener('click', () => {
+  // shoppingListBtn.addEventListener('click', () => {
     shoppingList.innerHTML = arrCardsSelectedBooks.join('');
-  })
+  // })
 }
 export default arrSelectedBooks;
