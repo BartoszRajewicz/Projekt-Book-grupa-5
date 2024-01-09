@@ -39,6 +39,25 @@ ul {
   }
 }
 
+.section-shopping-list {
+  max-width: 1440px;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media screen and (min-width: 768px) {
+  .section-shopping-list {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .section-shopping-list {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 img {
   height: auto;
   cursor: pointer;
@@ -165,6 +184,32 @@ footer {
 
 .card img {
   width: 100%;
+}
+
+button.see-more-button {
+  width: 124px; /* Szerokość */
+  height: 46px;
+  background: #f6f6f6;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 40px;
+  border: 2px solid;
+  border-color: #4f2ee8;
+  margin-top: 40px;
+  margin-left: auto;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: -0.18px;
+  text-transform: uppercase;
+}
+button.see-more-button:hover, button.see-more-button:focus {
+  background: #4f2ee8;
+  color: #ffffff;
 }
 
 body {
@@ -326,7 +371,7 @@ body .book-card .book-details h3 {
   letter-spacing: -0.64px;
 }
 body .book-card .book-details p {
-  color: #B4AFAF;
+  color: #b4afaf;
   font-family: DM Sans;
   font-size: 12px;
   font-style: italic;
@@ -372,6 +417,25 @@ ul {
 }
 @media screen and (min-width: 1440px) {
   .main-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.section-shopping-list {
+  max-width: 1440px;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media screen and (min-width: 768px) {
+  .section-shopping-list {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .section-shopping-list {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -492,17 +556,12 @@ ul {
   display: none;
 }
 
-@media screen and (max-width: 485px) {
+@media screen and (max-width: 768px) {
   .nav {
     display: none;
   }
 }
-@media screen and (min-width: 768px) {
-  .nav {
-    display: flex;
-  }
-}
-@media (max-width: 375px) {
+@media (max-width: 768px) {
   .nav {
     display: none;
   }
@@ -660,6 +719,25 @@ ul {
 }
 @media screen and (min-width: 1440px) {
   .main-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.section-shopping-list {
+  max-width: 1440px;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media screen and (min-width: 768px) {
+  .section-shopping-list {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .section-shopping-list {
     padding-left: 24px;
     padding-right: 24px;
   }

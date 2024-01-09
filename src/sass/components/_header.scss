@@ -122,14 +122,9 @@
 }
 // menu mobilne //
 
-@media screen and (max-width: 485px) {
+
+@media screen and (max-width: 768px) {
   .nav {
     display: none;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .nav {
-    display: flex;
   }
 }
