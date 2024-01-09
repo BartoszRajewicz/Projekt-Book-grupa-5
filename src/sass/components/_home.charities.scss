@@ -15,7 +15,6 @@ img {
   // width: 22.25rem;
   // width: 100%;
   padding: 28px 40px 20px 40px;
-
 }
 
 .charity-item {
@@ -101,13 +100,12 @@ footer {
   }
 }
 
-.container_home{
-      max-width: 335px;
-        max-height: 460px;
-      
-      
-        @media screen and (min-width: 1440px) {
-          max-width: 356px;
-          max-height: 474px;
-        }
+.container_home {
+  max-width: 335px;
+  max-height: 460px;
+
+  @media screen and (min-width: 1440px) {
+    max-width: 356px;
+    max-height: 474px;
+  }
 }
