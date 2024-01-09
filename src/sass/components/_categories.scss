@@ -4,11 +4,11 @@ body {
   .categories-container {
     margin-bottom: 40px;
     overflow-y: auto;
-    width:100%;
+    width: 100%;
     max-height: 228px;
     padding: 10px;
     max-width: 335px;
-    
+
     @media screen and (min-width: 1440px) {
       max-width: 328px;
       max-height: 472px;
@@ -41,38 +41,36 @@ body {
     top: 112px;
     left: 420px;
 
-
-
     &-black {
       font-family: DM Sans;
       text-align: left;
       color: black;
 
       letter-spacing: -1.28px;
-    line-height: 38px;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    @media screen and (min-width: 1440px) {
-    font-size: 48px;
-    line-height: 52px;
-    letter-spacing: -1.92px;
-  }
+      line-height: 38px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      @media screen and (min-width: 1440px) {
+        font-size: 48px;
+        line-height: 52px;
+        letter-spacing: -1.92px;
+      }
     }
 
     &-last-word {
       font-family: DM Sans;
       text-align: left;
       letter-spacing: -1.28px;
-       line-height: 38px;
+      line-height: 38px;
       font-size: 32px;
-       font-style: normal;
+      font-style: normal;
       font-weight: 700;
-       @media screen and (min-width: 1440px) {
-      font-size: 48px;
-      line-height: 52px;
-      letter-spacing: -1.92px;
-  }
+      @media screen and (min-width: 1440px) {
+        font-size: 48px;
+        line-height: 52px;
+        letter-spacing: -1.92px;
+      }
       color: $violetColor;
     }
   }
@@ -122,7 +120,7 @@ body {
     // display: grid;
     display: flex;
     flex-wrap: wrap;
-    gap:24px;
+    gap: 24px;
     justify-content: center;
     // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     // grid-gap: 20px;
@@ -149,7 +147,7 @@ body {
     text-align: center;
     max-width: 335px;
     @media screen and (min-width: 1440px) {
-    max-width: 180px;
+      max-width: 180px;
     }
     // max-height: 256px;
 
@@ -162,7 +160,7 @@ body {
       max-height: 485px;
 
       @media screen and (min-width: 1440px) {
-      max-height: 256px;
+        max-height: 256px;
       }
     }
 
@@ -171,8 +169,8 @@ body {
       display: flex;
       flex-direction: column;
       align-items: baseline;
-      
-      h3{
+
+      h3 {
         color: #111;
         font-family: DM Sans;
         font-size: 16px;
@@ -182,22 +180,21 @@ body {
         /* 112.5% */
         letter-spacing: -0.64px;
 
-
         // @media screen and (min-width: 1440px) {
         //   text-transform: uppercase;
         //   margin: 0;
-          
+
         // }
       }
-      p{
-        color: #B4AFAF;
-          font-family: DM Sans;
-          font-size: 12px;
-          font-style: italic;
-          font-weight: 400;
-          line-height: 14px;
-          /* 116.667% */
-          letter-spacing: -0.48px;
+      p {
+        color: #b4afaf;
+        font-family: DM Sans;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 14px;
+        /* 116.667% */
+        letter-spacing: -0.48px;
       }
     }
   }
