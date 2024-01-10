@@ -32,6 +32,34 @@
   gap: 40px;
   width: 100%;
 }
+.book-card {
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+}
+
+.quick-view-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #eac645;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  opacity: 0;
+  border-radius: 0 0 8px 8px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover .quick-view-overlay {
+  opacity: 1;
+}
 
 .card {
   img {
