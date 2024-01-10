@@ -21,25 +21,14 @@ export function hiddenOrVisual(statusForEmptyList, statusForShoppingList) {
   shoppingList.style.display = statusForShoppingList;
 }
 function checkLocalStorage() {
-  let arrBooks = [];
-  Object.keys(localStorage).forEach(key => {
-    if (key !== 'theme') {
-      let value = JSON.parse(localStorage.getItem(key));
-      arrBooks.push(value);
-    }
-  });
+  let arrBooks = JSON.parse(localStorage.getItem('shoppingList'));
   return arrBooks;
 }
 function getImages(name) {
   return objShop[name] || '';
 }
 
-// function getImages(name) {
-//   if (name in objShop) {
-//     const image = objShop[name];
-//     return image;
-//   } else return '';
-// }
+
 function markupListOfStore(stores) {
   if (!Array.isArray(stores)) {
     return '';
