@@ -183,31 +183,41 @@ function handleCategoryClick(category, clickedElement) {
   }
 }
 
-function updateBooksList(category, booksListContainer) {
-  fetch(`https://books-backend.p.goit.global/books/category?category=${category}`)
-    .then(response => response.json())
-    .then(books => {
-      if (books && books.length > 0) {
-        booksListContainer.innerHTML = '';
+async function updateBooksList(category, booksListContainer) {
+  try {
+    const response = await fetch(
+      `https://books-backend.p.goit.global/books/category?category=${category}`,
+    );
+    const books = await response.json();
 
-        books.slice(0, 4).forEach(book => {
-          const card = document.createElement('div');
-          card.classList.add('book-card');
+    if (books && books.length > 0) {
+      booksListContainer.innerHTML = '';
 
-          card.innerHTML = `
-              <img src="${book.book_image}" alt="${book.title}">
-              <div class="book-details">
-                <h3>${book.title}</h3>
-                <p>${book.author}</p>
-              </div>`;
-          card.addEventListener('click', () => openPopup(book));
-          booksListContainer.appendChild(card);
-        });
-      } else {
-        console.warn('Brak książek dla wybranej kategorii.');
-      }
-    })
-    .catch(error => console.error('Błąd podczas pobierania książek:', error));
+      books.slice(0, 4).forEach(book => {
+        const card = createBookCard(book);
+        card.addEventListener('click', () => openPopup(book));
+        booksListContainer.appendChild(card);
+      });
+    } else {
+      console.warn('Brak książek dla wybranej kategorii.');
+    }
+  } catch (error) {
+    console.error('Błąd podczas pobierania książek:', error);
+  }
+}
+
+function createBookCard(book) {
+  const card = document.createElement('div');
+  card.classList.add('book-card');
+
+  card.innerHTML = `
+    <img src="${book.book_image}" alt="${book.title}">
+    <div class="book-details">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+    </div>`;
+
+  return card;
 }
 
 export function seeMoreButtonClick(category) {
