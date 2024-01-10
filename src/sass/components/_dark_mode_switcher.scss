@@ -56,8 +56,14 @@
 [data-theme='dark'] {
     background-color: #202024;
     color: white;
+    
     .nav__link{
         color: white;
+    &:hover,
+    &:active,
+    &:focus {
+        color: black;
+    }
     }
     .category-item.active{
         color: #EAC645;
@@ -87,9 +93,16 @@
         filter: brightness(0) invert(1);
     }
     
-    .header__icon{
-        filter: brightness(0) invert(1);
+    // .header__icon{
+    //     filter: brightness(0) invert(1);
+    // }
+    .header__icon {
+        display: none;
     }
+    .header__icon__dark {
+        display: flex;
+    }
+
     .book-card .book-details {
     h3 {
         color: #FFF;
@@ -121,7 +134,7 @@
     .menu-icon {
         filter: brightness(0) invert(1);
     }
-    .nav__link__sun {
+    .nav__link {
         &--active{
             &::after{
                 color: black;
