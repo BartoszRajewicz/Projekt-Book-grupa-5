@@ -1,14 +1,27 @@
 @import './globals';
 
 .section-shopping-list {
-  max-width: 1440px;
   margin: auto;
-  // padding-top: 40px;
+  padding-top: 40px;
   padding-bottom: 40px;
-  // min-height: 100vh;
+  min-height: 100vh;
   background-color: var(--backgroundColor);
 }
 
+@media screen and (min-width: 1440px) {
+  .section-shopping-list {
+      margin-top: 75px;
+  }
+}
+@media screen and (min-width: 1440px) {
+.container-shopping-list {
+  display: flex;
+  justify-content: space-between;
+}
+.container-shoplist {
+  width: 996px;
+}
+}
 .main-title-shoplist-hidden {
   position: absolute;
   width: 1px;
@@ -22,8 +35,14 @@
   overflow: hidden;
 }
 
-.wrap-support {
-  display: none;
+  // .wrap-support {
+  //   display: none;
+  // }
+
+@media screen and (min-width: 1440px) {
+  .wrap-support {
+    display: contents;
+  }
 }
 
 .title-shoplist {
@@ -75,7 +94,11 @@
   border: 2px solid rgba(79, 46, 232, 0.4);
   background-color: #ffffff;
 }
-
+@media screen and (min-width: 1440px) {
+  .shoplist-item {
+    max-width: 996px;
+  }
+}
 .delate-btn {
   position: absolute;
   top: 14px;
@@ -90,14 +113,21 @@
   border-radius: 50%;
   border-style: none;
   cursor: pointer;
-  transition: transform; /* ta linijka zostaje */
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); /* ta linijka zostaje */
 }
 
 .delate-btn:hover,
 .delate-btn:focus {
   transform: scale(1.2);
 }
-
+@media screen and (min-width: 1440px) {
+  .delate-btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 34px;
+  }
+}
 .img-shoplist-card {
   border-radius: 8px;
 }
@@ -106,7 +136,11 @@
   max-width: 193px;
   min-width: 100px;
 }
-
+@media screen and (min-width: 1440px) {
+  .card-shopplist {
+    max-width: 808px;
+  }
+}
 .card-title-shoplist {
   margin-bottom: 4px;
   font-size: 16px;
@@ -118,7 +152,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+@media screen and (min-width: 1440px) {
+  .card-title-shoplist {
+    max-width: 760px;
+  }
+}
 .card-category-shoplist {
   font-size: 12px;
   font-weight: 400;
@@ -131,7 +169,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+@media screen and (min-width: 1440px) {
+  .card-category-shoplist {
+    max-width: 760px;
+  }
+}
 .card-description-shoplist {
   margin-bottom: 14px;
   font-weight: 400;
@@ -145,7 +187,11 @@
   -webkit-line-clamp: 3;
   white-space: pre-wrap;
 }
-
+@media screen and (min-width: 1440px) {
+  .card-description-shoplist {
+    min-width: 808px;
+  }
+}
 .wrapper-card-shoplist-footer {
   max-width: 193px;
   align-items: baseline;
@@ -153,7 +199,11 @@
   justify-content: space-between;
   gap: 16px;
 }
-
+@media screen and (min-width: 1440px) {
+  .wrapper-card-shoplist-footer {
+    max-width: 808px;
+  }
+}
 .card-author-shoplist {
   margin-right: auto;
   max-width: 97px;
@@ -184,9 +234,9 @@
   height: 6px;
 }
 
-.shops-list::-webkit-scrollbar-thumb {
-  background-color: rgb(196, 190, 190);
-}
+// .shops-list::-webkit-scrollbar-thumb {
+//   background-color: rgb(196, 190, 190);
+// }
 
 .shop-item {
   background-color: transparent;
@@ -220,238 +270,85 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-/* PAGINACJAAA*/
-
-.container-pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination {
-  display: flex;
-  align-items: center;
-  padding: 10px 40px;
-}
-
-.arrow-left {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #111;
-  cursor: pointer;
-}
-
-.arrow-right {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: #eac645;
-  cursor: pointer;
-}
-
-.pagination-list {
-  margin-right: 14px;
-  padding-left: 14px;
-}
-
-.pagination-list .link {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid #111;
-  cursor: pointer;
-}
-
-.link:nth-child(3) {
-  display: none;
-}
-
-.pagination-list .link.active {
-  color: #fff;
-  background-color: #111;
-}
-
-.link {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 22px;
-}
-
-.arrows-left-icon {
-  fill: #b4afaf;
-  margin-top: 4px;
-}
-
-.arrows-right-icon {
-  fill: #111;
-  margin-top: 4px;
-}
-
-.arrow-double-left {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #111;
-  margin-right: 5px;
-  cursor: pointer;
-}
-.arrow-double-left .fa {
-  font-size: 22px;
-  color: #b4afaf;
-}
-
-.arrow-double-right .fa {
-  color: #111;
-  font-size: 22px;
-}
-
-.arrow-double-right {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: #eac645;
-  margin-left: 5px;
-  cursor: pointer;
-}
 
 /* +++++++++++ Tablet ++++++++++++ */
 
-@media screen and (min-width: 768px) {
-  .section-shopping-list {
-    margin-top: 64px;
-  }
+// @media screen and (min-width: 768px) {
+//   .section-shopping-list {
+//     margin-top: 64px;
+//   }
 
-  .title-shoplist {
-    font-size: 48px;
-    line-height: 1.08;
-    letter-spacing: -1.92px;
-  }
+//   .title-shoplist {
+//     font-size: 48px;
+//     line-height: 1.08;
+//     letter-spacing: -1.92px;
+//   }
 
-  .empty-list {
-    margin-top: 140px;
-    width: 349px;
-  }
+//   .empty-list {
+//     margin-top: 140px;
+//     width: 349px;
+//   }
 
-  .empty-message {
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.33;
-    letter-spacing: -0.36px;
-  }
+//   .empty-message {
+//     margin-bottom: 20px;
+//     font-size: 18px;
+//     line-height: 1.33;
+//     letter-spacing: -0.36px;
+//   }
 
-  .shopplist-item {
-    max-width: 704px;
-    height: 213px;
-    padding: 24px;
-    gap: 24px;
-  }
+//   .shopplist-item {
+//     max-width: 704px;
+//     height: 213px;
+//     padding: 24px;
+//     gap: 24px;
+//   }
 
-  .delate-btn {
-    top: 24px;
-    right: 24px;
-    width: 34px;
-    height: 34px;
-    background-color: var(--violetColor);
-    border-radius: 34px;
-  }
+//   .delate-btn {
+//     top: 24px;
+//     right: 24px;
+//     width: 34px;
+//     height: 34px;
+//     background-color: var(--violetColor);
+//     border-radius: 34px;
+//   }
 
-  .card-shopplist {
-    max-width: 508px;
-  }
+//   .card-shopplist {
+//     max-width: 508px;
+//   }
 
-  .card-title-shoplist {
-    max-width: 450px;
-  }
+//   .card-title-shoplist {
+//     max-width: 450px;
+//   }
 
-  .card-category-shoplist {
-    margin-bottom: 14px;
-    max-width: 450px;
-  }
+//   .card-category-shoplist {
+//     margin-bottom: 14px;
+//     max-width: 450px;
+//   }
 
-  .card-description-shoplist {
-    margin-bottom: 32px;
-    letter-spacing: -0.56px;
-    min-width: 508px;
-    max-height: 53px;
-  }
+//   .card-description-shoplist {
+//     margin-bottom: 32px;
+//     letter-spacing: -0.56px;
+//     min-width: 508px;
+//     max-height: 53px;
+//   }
 
-  .wrapper-card-shoplist-footer {
-    max-width: 508px;
-  }
+//   .wrapper-card-shoplist-footer {
+//     max-width: 508px;
+//   }
 
-  .card-author-shoplist {
-    max-width: 100%;
-  }
+//   .card-author-shoplist {
+//     max-width: 100%;
+//   }
 
-  .shops-list {
-    gap: 16px;
-    max-width: 100%;
-  }
+//   .shops-list {
+//     gap: 16px;
+//     max-width: 100%;
+//   }
 
-  .shop-link-image img {
-    max-width: 48px;
-    max-height: 28px;
-  }
-  .container-pagination {
-    margin-top: 40px;
-  }
-}
+//   .shop-link-image img {
+//     max-width: 48px;
+//     max-height: 28px;
+//   }
+// }
 
 /* +++++++++++ Desktop ++++++++++++ */
-
-@media screen and (min-width: 1440px) {
-  .section-shopping-list {
-    margin-top: 75px;
-  }
-
-  .container-shopping-list {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .container-shoplist {
-    width: 996px;
-  }
-
-  .shopplist-item {
-    max-width: 996px;
-  }
-
-  .delate-btn {
-    width: 34px;
-    height: 34px;
-    padding: 0;
-    border-radius: 34px;
-  }
-
-  .card-shopplist {
-    max-width: 808px;
-  }
-
-  .card-title-shoplist {
-    max-width: 760px;
-  }
-
-  .card-category-shoplist {
-    max-width: 760px;
-  }
-
-  .card-description-shoplist {
-    min-width: 808px;
-  }
-
-  .wrapper-card-shoplist-footer {
-    max-width: 808px;
-  }
-
-  .container-pagination {
-    margin-top: 40px;
-  }
-}
