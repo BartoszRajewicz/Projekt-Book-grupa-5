@@ -161,9 +161,41 @@ function handleCategoryClick(category, clickedElement) {
   }
 }
 
-function seeMoreButtonClick(category) {
-  console.log(`See More button clicked for category: ${category}`);
+async function updateBooksList(category, booksListContainer) {
+  try {
+    const response = await fetch(
+      `https://books-backend.p.goit.global/books/category?category=${category}`,
+    );
+    const books = await response.json();
+
+    if (books && books.length > 0) {
+      booksListContainer.innerHTML = '';
+
+      books.slice(0, 4).forEach(book => {
+        const card = createBookCard(book);
+        card.addEventListener('click', () => openPopup(book));
+        booksListContainer.appendChild(card);
+      });
+    } else {
+      console.warn('Brak książek dla wybranej kategorii.');
+    }
+  } catch (error) {
+    console.error('Błąd podczas pobierania książek:', error);
+  }
 }
+
+function createBookCard(book) {
+  const card = document.createElement('div');
+  card.classList.add('book-card');
+
+  card.innerHTML = `
+    <img src="${book.book_image}" alt="${book.title}">
+    <div class="book-details">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+    </div>`;
+
+  return card;
 
 function fetchBooksByCategory(category) {
   booksContainer.innerHTML = '';
