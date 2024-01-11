@@ -1,3 +1,4 @@
+import { seeMoreButtonClick } from './seeMore';
 const categoriesContainer = document.getElementById('categories');
 const booksContainer = document.getElementById('books-container');
 
@@ -40,6 +41,13 @@ function fetchBookCategories() {
     })
     .catch(error => console.error('Błąd podczas pobierania kategorii:', error));
 }
+const allCategoriesElement = document.querySelector('[data-category="All categories"]');
+
+const handleAllCategoriesClick = () => {
+  handleCategoryClick('All categories', allCategoriesElement);
+};
+
+allCategoriesElement.addEventListener('click', handleAllCategoriesClick);
 
 function fetchTopCategories() {
   const topCategoriesEndpoint = 'https://books-backend.p.goit.global/books/top-books';
@@ -48,6 +56,8 @@ function fetchTopCategories() {
     .then(response => response.json())
     .then(topCategoriesData => {
       if (topCategoriesData && topCategoriesData.length > 0) {
+        booksContainer.innerHTML = '';
+
         const categoriesList = document.createElement('div');
         categoriesList.classList.add('home_gallery');
 
@@ -96,11 +106,15 @@ function fetchTopCategories() {
             card.classList.add('book-card');
 
             card.innerHTML = `
-                <img src="${book.book_image}" alt="${book.title}">
-                <div class="book-details">
-                  <h3>${book.title}</h3>
-                  <p>${book.author}</p>
-                </div>`;
+            <div class="image-container">
+              <img src="${book.book_image}" alt="${book.title}">
+              <div class="quick-view-overlay">Quick View</div>
+            </div>
+            <div class="book-details">
+              <h3>${book.title}</h3>
+              <p>${book.author}</p>
+            </div>`;
+
             card.addEventListener('click', () => openPopup(book));
             booksList.appendChild(card);
           });
@@ -122,6 +136,7 @@ function fetchTopCategories() {
             const categoryName = this.getAttribute('data-category');
             const categoryBooksList = this.querySelector('.books-list');
             updateBooksList(categoryName, categoryBooksList);
+            this.classList.add('quick-view-overlay');
           });
         });
       } else {
@@ -148,23 +163,67 @@ function handleCategoryClick(category, clickedElement) {
   const words = category.split(' ');
   const lastWord = words.pop();
   const categoryName = words.join(' ');
+  const sanitizedCategory = category.replace(/\s+/g, '');
 
-  categoryHeader.innerHTML = `
+  if (category === 'All categories') {
+    categoryHeader.innerHTML = '';
+  } else {
+    categoryHeader.innerHTML = `
       <span class="category-header-black">${categoryName}</span>
       <span class="category-header-last-word">${lastWord}</span>`;
+  }
 
   allCategoriesVisible = false;
   selectedCategoryHeader.innerHTML = '';
 
-  if (category !== 'All categories') {
+  if (category === 'All categories') {
+    fetchTopCategories();
+  } else {
     fetchBooksByCategory(category);
   }
 }
 
-function seeMoreButtonClick(category) {
-  console.log(`See More button clicked for category: ${category}`);
+async function updateBooksList(category, booksListContainer) {
+  try {
+    const response = await fetch(
+      `https://books-backend.p.goit.global/books/category?category=${category}`,
+    );
+    const books = await response.json();
+
+    if (books && books.length > 0) {
+      booksListContainer.innerHTML = '';
+
+      books.slice(0, 4).forEach(book => {
+        const card = createBookCard(book);
+        card.addEventListener('click', () => openPopup(book));
+        booksListContainer.appendChild(card);
+      });
+    } else {
+      console.warn('Brak książek dla wybranej kategorii.');
+    }
+  } catch (error) {
+    console.error('Błąd podczas pobierania książek:', error);
+  }
 }
 
+function createBookCard(book) {
+  const card = document.createElement('div');
+  card.classList.add('book-card');
+
+  card.innerHTML = `
+    <img src="${book.book_image}" alt="${book.title}">
+    <div class="book-details">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+    </div>`;
+
+  return card;
+}
+
+export function seeMoreButtonClick(category) {
+  const encodedCategory = encodeURIComponent(category);
+  console.log(`See More button clicked for category: ${encodedCategory}`);
+}
 function fetchBooksByCategory(category) {
   booksContainer.innerHTML = '';
 
@@ -196,35 +255,15 @@ function fetchBooksByCategory(category) {
   }
 }
 
-function updateBooksList(category, booksListContainer) {
-  fetch(`https://books-backend.p.goit.global/books/category?category=${category}`)
-    .then(response => response.json())
-    .then(books => {
-      if (books && books.length > 0) {
-        // Wyczyść poprzednią listę książek
-        booksListContainer.innerHTML = '';
+document.querySelectorAll('.book-category').forEach(category => {
+  category.addEventListener('click', function () {
+    const categoryName = this.getAttribute('data-category');
+    const categoryBooksList = this.querySelector('.books-list');
+    updateBooksList(categoryName, categoryBooksList);
+  });
+});
 
-        books.slice(0, 4).forEach(book => {
-          const card = document.createElement('div');
-          card.classList.add('book-card');
-
-          card.innerHTML = `
-              <img src="${book.book_image}" alt="${book.title}">
-              <div class="book-details">
-                <h3>${book.title}</h3>
-                <p>${book.author}</p>
-              </div>`;
-          card.addEventListener('click', () => openPopup(book));
-          booksListContainer.appendChild(card);
-        });
-      } else {
-        console.warn('Brak książek dla wybranej kategorii.');
-      }
-    })
-    .catch(error => console.error('Błąd podczas pobierania książek:', error));
-}
-
-function openPopup(book) {
+export function openPopup(book) {
   popupTitle.textContent = book.title;
   popupAuthor.textContent = book.author;
   popupDescription.textContent = book.description;
