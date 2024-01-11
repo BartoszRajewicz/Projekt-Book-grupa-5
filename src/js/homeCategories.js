@@ -210,23 +210,12 @@ function createBookCard(book) {
   const card = document.createElement('div');
   card.classList.add('book-card');
 
-  const imageContainer = document.createElement('div');
-  imageContainer.classList.add('image-container');
-  const image = document.createElement('img');
-  image.src = book.book_image;
-  image.alt = book.title;
-  imageContainer.appendChild(image);
-  card.appendChild(imageContainer);
-
-  const bookDetails = document.createElement('div');
-  bookDetails.classList.add('book-details');
-  const title = document.createElement('h3');
-  title.textContent = book.title;
-  const author = document.createElement('p');
-  author.textContent = book.author;
-  bookDetails.appendChild(title);
-  bookDetails.appendChild(author);
-  card.appendChild(bookDetails);
+  card.innerHTML = `
+    <img src="${book.book_image}" alt="${book.title}">
+    <div class="book-details">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+    </div>`;
 
   return card;
 }
