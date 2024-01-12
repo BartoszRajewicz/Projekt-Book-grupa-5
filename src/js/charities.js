@@ -14,42 +14,6 @@ function openCharityLink(url) {
   window.open(url, '_blank');
 }
 
-let currentIndex = 0;
-const visibleSlides = 5;
-
-function nextSlide() {
-  const slides = document.querySelector('.slider');
-  const totalSlides = document.querySelectorAll('.charity-item').length;
-
-  currentIndex = (currentIndex + 1) % (totalSlides - visibleSlides + 1);
-
-  const slideHeight = document.querySelector('.charity-item').offsetHeight;
-
-  slides.style.transition = 'transform 0.5s ease-in-out';
-  slides.style.transform = `translateY(-${currentIndex * slideHeight}px)`;
-
-  updateArrow();
-}
-
-function updateArrow() {
-  const arrow = document.querySelector('.arrow');
-  const totalSlides = document.querySelectorAll('.charity-item').length;
-
-  arrow.classList.toggle('up', currentIndex >= totalSlides - visibleSlides);
-}
-
-import {
-  saveChildrenImg,
-  projectHopeImg,
-  internationalMedImg,
-  razomImg,
-  actionsAgainstImg,
-  charityFoundImg,
-  medecinsImg,
-  worldVisionImg,
-  unitedImg,
-} from './charitiesExport';
-
 const charities = [
   {
     title: 'Save the Children',
@@ -100,24 +64,64 @@ const charities = [
 
 document.addEventListener('DOMContentLoaded', function () {
   const charityContainer = document.getElementById('charity-container');
+  const arrowContainer = document.querySelector('.arrow-container');
 
-  charities.forEach((charity, index) => {
-    const div = document.createElement('div');
-    const img = document.createElement('img');
-    const charNum = (index + 1).toString().padStart(2, '0');
+  const totalCharities = charities.length;
+  const charitiesPerPage = 6;
+  let currentPage = 0;
 
-    img.src = charity.img;
-    img.alt = charNum;
-    img.title = charity.title;
+  function updateCharities() {
+    const startIdx = currentPage * charitiesPerPage;
+    const endIdx = startIdx + charitiesPerPage;
 
-    img.onclick = () => openCharityLink(charity.url);
+    const visibleCharities = charities.slice(startIdx, endIdx);
 
-    div.className = 'charity-item';
-    div.innerText = charNum;
+    charityContainer.innerHTML = '';
 
-    div.appendChild(img);
-    charityContainer.appendChild(div);
+    visibleCharities.forEach((charity, index) => {
+      const div = document.createElement('div');
+      const img = document.createElement('img');
+      const charNum = (startIdx + index + 1).toString().padStart(2, '0');
+
+      img.src = charity.img;
+      img.alt = charNum;
+      img.title = charity.title;
+
+      img.onclick = () => openCharityLink(charity.url);
+
+      div.className = 'charity-item';
+      div.innerText = charNum;
+
+      div.appendChild(img);
+      charityContainer.appendChild(div);
+    });
+
+    updateArrow();
+  }
+
+  function nextSlide() {
+    currentPage = (currentPage + 1) % Math.ceil(totalCharities / charitiesPerPage);
+    updateCharities();
+  }
+
+  function prevSlide() {
+    currentPage =
+      (currentPage - 1 + Math.ceil(totalCharities / charitiesPerPage)) %
+      Math.ceil(totalCharities / charitiesPerPage);
+    updateCharities();
+  }
+
+  arrowContainer.addEventListener('click', nextSlide);
+  arrowContainer.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    prevSlide();
   });
 
-  updateArrow();
+  function updateArrow() {
+    const arrow = document.querySelector('.arrow');
+    arrow.classList.toggle('up', currentPage >= Math.ceil(totalCharities / charitiesPerPage) - 1);
+    arrow.classList.toggle('down', currentPage <= 0); // Dodane
+  }
+
+  updateCharities();
 });
