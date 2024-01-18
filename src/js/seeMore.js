@@ -1,17 +1,25 @@
-import { openPopup } from './homeCategories';
+// --- seeMore.js ---
+
+// Importuj funkcję otwierającą popup z homeCategories.js
+import { openPopup, handleCategoryClick } from './homeCategories';
+
 const booksContainer = document.getElementById('books-container');
+const seeMoreButton = document.querySelector('.see-more-button');
 const selectedCategoryHeader = document.getElementById('selected-category-header');
 
 export function seeMoreButtonClick(category) {
   const encodedCategory = encodeURIComponent(category);
-
   selectedCategoryHeader.innerHTML = getFormattedCategoryHeader(category);
 
-  fetchBooksByCategory(category);
+  fetchBooksByCategory(category, seeMoreButton);
 }
 
-function fetchBooksByCategory(category) {
+export function fetchBooksByCategory(category, seeMoreButton) {
   booksContainer.innerHTML = '';
+
+  if (seeMoreButton) {
+    seeMoreButton.addEventListener('click', () => handleSeeMoreClick(category));
+  }
 
   if (category !== 'All categories') {
     fetch(`https://books-backend.p.goit.global/books/category?category=${category}`)
@@ -37,6 +45,10 @@ function fetchBooksByCategory(category) {
       })
       .catch(error => console.error('Błąd podczas pobierania książek:', error));
   }
+}
+
+function handleSeeMoreClick(category) {
+  seeMoreButtonClick(category);
 }
 
 function getFormattedCategoryHeader(category) {

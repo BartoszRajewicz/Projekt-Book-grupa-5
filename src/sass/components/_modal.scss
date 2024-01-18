@@ -94,6 +94,13 @@
     gap: 20px;
     align-items: center;
   }
+  .icon-trash {
+    width: 16px;
+    height: 16px;
+    background: url(../images/trash.svg), no-repeat;
+    mix-blend-mode: luminosity;
+  }
+
   .icon-amazon {
     width: 62px;
     height: 19px;

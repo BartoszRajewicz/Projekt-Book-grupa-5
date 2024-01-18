@@ -17,8 +17,8 @@ import worldVisionImgX2 from './../images/worldvision@2x.png';
 import unitedImg from './../images/united.png';
 import unitedImgX2 from './../images/united@2x.png';
 import trashSvg from './../images/trash.svg';
-import amazon from '../images/amazon.png';
-import baren from '../images/baren-nobel.png';
+import amazon from './../images/amazon.png';
+import baren from './../images/baren-nobel.png';
 
 export {
   saveChildrenImg,

@@ -1,7 +1,7 @@
 import { seeMoreButtonClick } from './seeMore';
+
 const categoriesContainer = document.getElementById('categories');
 const booksContainer = document.getElementById('books-container');
-
 const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup__close');
 const popupTitle = document.querySelector('.book__title');
@@ -12,7 +12,6 @@ const amazonLink = document.querySelector('.icon-amazon');
 const barenNobelLink = document.querySelector('.icon-barenNobel');
 const shoppingListBtn = document.querySelector('.shopping-list-btn');
 const receipt = document.querySelector('.add-receipt');
-
 const selectedCategoryHeader = document.getElementById('selected-category-header');
 
 let allCategoriesVisible = true;
@@ -41,6 +40,7 @@ function fetchBookCategories() {
     })
     .catch(error => console.error('Błąd podczas pobierania kategorii:', error));
 }
+
 const allCategoriesElement = document.querySelector('[data-category="All categories"]');
 
 const handleAllCategoriesClick = () => {
@@ -57,22 +57,15 @@ function fetchTopCategories() {
     .then(topCategoriesData => {
       if (topCategoriesData && topCategoriesData.length > 0) {
         booksContainer.innerHTML = '';
-
         const categoriesList = document.createElement('div');
         categoriesList.classList.add('home_gallery');
-
         const bestSellersHeader = document.createElement('h2');
         bestSellersHeader.innerHTML = `
-            <span class="category-header-black">
-              Best Sellers
-            </span>
-            <span class="category-header-last-word">
-              Books
-            </span>
-          `;
+          <span class="category-header-black">Best Sellers</span>
+          <span class="category-header-last-word">Books</span>
+        `;
         bestSellersHeader.classList.add('best-sellers-header');
         categoriesList.appendChild(bestSellersHeader);
-
         topCategoriesData.slice(0, 4).forEach(category => {
           const categoryContainer = document.createElement('div');
           categoryContainer.classList.add('book-category', 'card');
@@ -84,17 +77,17 @@ function fetchTopCategories() {
 
           const categoryHeader = document.createElement('h2');
           categoryHeader.innerHTML = `
-              <span style="
-                font-size: 14px;
-                line-height: 24px;
-                font-family: 'DM Sans', sans-serif;
-                font-weight: 400;
-                color: #B4AFAF;
-                letter-spacing: 0.42px;
-                text-transform: uppercase;">
-                ${categoryNameWithoutLastWord}
-              </span>
-            `;
+            <span style="
+              font-size: 14px;
+              line-height: 24px;
+              font-family: 'DM Sans', sans-serif;
+              font-weight: 400;
+              color: #B4AFAF;
+              letter-spacing: 0.42px;
+              text-transform: uppercase;">
+              ${categoryNameWithoutLastWord}
+            </span>
+          `;
           categoryContainer.appendChild(categoryHeader);
 
           const booksList = document.createElement('div');
@@ -104,17 +97,15 @@ function fetchTopCategories() {
           category.books.slice(0, 4).forEach(book => {
             const card = document.createElement('div');
             card.classList.add('book-card');
-
             card.innerHTML = `
-            <div class="image-container">
-              <img src="${book.book_image}" alt="${book.title}">
-              <div class="quick-view-overlay">Quick View</div>
-            </div>
-            <div class="book-details">
-              <h3>${book.title}</h3>
-              <p>${book.author}</p>
-            </div>`;
-
+              <div class="image-container">
+                <img src="${book.book_image}" alt="${book.title}">
+                <div class="quick-view-overlay">Quick View</div>
+              </div>
+              <div class="book-details">
+                <h3>${book.title}</h3>
+                <p>${book.author}</p>
+              </div>`;
             card.addEventListener('click', () => openPopup(book));
             booksList.appendChild(card);
           });
@@ -242,13 +233,12 @@ function fetchBooksByCategory(category) {
           books.forEach(book => {
             const card = document.createElement('div');
             card.classList.add('book-card');
-
             card.innerHTML = `
-                <img src="${book.book_image}" alt="${book.title}">
-                <div class="book-details">
-                  <h3>${book.title}</h3>
-                  <p>${book.author}</p>
-                </div>`;
+              <img src="${book.book_image}" alt="${book.title}">
+              <div class="book-details">
+                <h3>${book.title}</h3>
+                <p>${book.author}</p>
+              </div>`;
             card.addEventListener('click', () => openPopup(book));
             booksContainer.appendChild(card);
           });
@@ -283,13 +273,19 @@ export function openPopup(book) {
   var arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
 
   function addBookToShoppingList() {
-    arrBooks.push(selectedBook);
-    localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
+    const isInArray = arrBooks.some(existingBook => existingBook.id === selectedBook.id);
 
-    receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
-    shoppingListBtn.textContent = `Remove from the shopping list`;
-    shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
-    shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
+    if (!isInArray) {
+      arrBooks.push(selectedBook);
+      localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
+
+      receipt.textContent = `Congratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".`;
+      shoppingListBtn.textContent = `Remove from the shopping list`;
+      shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
+      shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
+    } else {
+      receipt.textContent = `This book is already in the shopping list.`;
+    }
   }
 
   function removeBookFromShoppingList() {
