@@ -10,17 +10,17 @@
 
 @media screen and (min-width: 1440px) {
   .section-shopping-list {
-      margin-top: 75px;
+    margin-top: 75px;
   }
 }
 @media screen and (min-width: 1440px) {
-.container-shopping-list {
-  display: flex;
-  justify-content: space-between;
-}
-.container-shoplist {
-  width: 996px;
-}
+  .container-shopping-list {
+    display: flex;
+    justify-content: space-between;
+  }
+  .container-shoplist {
+    width: 996px;
+  }
 }
 .main-title-shoplist-hidden {
   position: absolute;
@@ -35,9 +35,9 @@
   overflow: hidden;
 }
 
-  // .wrap-support {
-  //   display: none;
-  // }
+// .wrap-support {
+//   display: none;
+// }
 
 @media screen and (min-width: 1440px) {
   .wrap-support {
@@ -109,7 +109,7 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  background-color: var(--violetColor);
+  background-color: #4f2ee8;
   border-radius: 50%;
   border-style: none;
   cursor: pointer;
@@ -227,7 +227,7 @@
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: auto;
-  stroke: var(--black);
+  stroke: #000000;
 }
 
 .shops-list::-webkit-scrollbar {
