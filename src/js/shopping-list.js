@@ -62,13 +62,12 @@ function markupListOfStore(stores) {
     return '';
   }
 
-  return stores
+  const validStores = stores.filter(({ name }) => name === 'amazon' || name === 'baren');
+
+  return validStores
     .map(({ name, url }) => {
-      if (name === 'amazon' || name === 'baren') {
-        const picture = getImages(name);
-        return `<li class="shop-item"><a href="${url}" target="_blank" class="shop-link-image">${picture}</a></li>`;
-      }
-      return '';
+      const picture = getImages(name);
+      return `<li class="shop-item">${picture.outerHTML}</li>`;
     })
     .join('\n');
 }
@@ -86,8 +85,8 @@ export function markupShoppingList(arrSelectedBooks) {
       return `
         <li class="shoplist-item" data-idcard="${id}">
           <div class="delete-container" data-id="${id}">
-            <div class="delete-img-container" data-id="${id}">
-              ${objShop.Trash}
+            <div class="delate-btn" data-id="${id}">
+              ${getImages('trash').outerHTML}
             </div>
           </div>
           ${imgElement.outerHTML}
@@ -97,7 +96,9 @@ export function markupShoppingList(arrSelectedBooks) {
             <p class="card-description-shoplist">${description}</p>
             <div class="wrapper-card-shoplist-footer">
               <p class="card-author-shoplist">${author}</p>
-              <ul class="shops-list">${shopsName}</ul>
+              <ul class="shops-list"> ${getImages('amazon').outerHTML} ${
+        getImages('baren').outerHTML
+      }</ul>
             </div>
           </div>
         </li>`;
