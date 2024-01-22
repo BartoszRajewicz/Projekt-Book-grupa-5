@@ -12,6 +12,8 @@ export const refs = {
   shoppingListBtn: document.querySelector('.shopping-list-btn'),
 };
 
+const noImage = 'ścieżka/do/braku/obrazu.jpg'; // Dodaj deklarację noImage
+
 function createImageElement(src, alt, width, height) {
   const img = document.createElement('img');
   img.src = src;
@@ -51,12 +53,20 @@ export function hiddenOrVisual(statusForEmptyList, statusForShoppingList) {
 }
 
 function checkLocalStorage() {
-  let arrBooks = JSON.parse(localStorage.getItem('shoppingList'));
+  let arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
+  arrBooks = arrBooks.map(book => ({
+    ...book,
+    amazonLink: objShop.Amazon,
+    barenNobelLink: objShop['Barnes and Noble'],
+  }));
   return arrBooks;
 }
-function createBookCard(book) {
-  return document.createElement('div');
+
+function openBookstore(url) {
+  console.log('Opening bookstore:', url);
+  window.open(url, '_blank');
 }
+
 function markupListOfStore(stores) {
   if (!Array.isArray(stores)) {
     return '';
@@ -64,12 +74,22 @@ function markupListOfStore(stores) {
 
   const validStores = stores.filter(({ name }) => name === 'amazon' || name === 'baren');
 
-  return validStores
-    .map(({ name, url }) => {
-      const picture = getImages(name);
-      return `<li class="shop-item">${picture.outerHTML}</li>`;
-    })
-    .join('\n');
+  const shopItems = validStores.map(({ name, url }) => {
+    const picture = getImages(name);
+    const shopItem = document.createElement('div');
+    shopItem.classList.add('shop-item');
+    shopItem.appendChild(picture);
+    picture.dataset.url = url;
+    picture.addEventListener('click', () => handleShopItemClick(url, name));
+
+    return shopItem;
+  });
+
+  return shopItems.map(item => item.outerHTML).join('\n');
+}
+
+function handleShopItemClick(url, platform) {
+  openBookstore(url);
 }
 
 export function markupShoppingList(arrSelectedBooks) {
@@ -89,16 +109,23 @@ export function markupShoppingList(arrSelectedBooks) {
               ${getImages('trash').outerHTML}
             </div>
           </div>
-          ${imgElement.outerHTML}
-          <div class="card-shoplist">
-            <h2 class="card-title-shoplist">${title}</h2>
-            <p class="card-category-shoplist">${title || 'No Title'}</p>
-            <p class="card-description-shoplist">${description}</p>
-            <div class="wrapper-card-shoplist-footer">
-              <p class="card-author-shoplist">${author}</p>
-              <ul class="shops-list"> ${getImages('amazon').outerHTML} ${
-        getImages('baren').outerHTML
-      }</ul>
+          <div class="shop-container">
+            <div class="card-shoplist">
+              <div class="img-list">${imgElement.outerHTML}</div>
+              <div class="card-descrip">
+                <h2 class="card-title-shoplist">${title}</h2>
+                <p class="card-category-shoplist">${title || 'No Title'}</p>
+                <p class="card-description-shoplist">${description}</p>
+                <div class="wrapper-card-shoplist-footer">
+                  <p class="card-author-shoplist">${author}</p>
+                  <div class="trading-platform-icons">
+                    <a href="${objShop.Amazon}" class="icon-amazon" target="_blank"></a>
+                    <a href="${
+                      objShop['Barnes and Noble']
+                    }" class="icon-barenNobel" target="_blank"></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </li>`;
