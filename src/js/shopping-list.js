@@ -1,26 +1,232 @@
-import { trashSvg, amazon, baren } from './charitiesExport';
+import { trashSvg } from './charitiesExport';
 
 const objShop = {
-  Amazon: amazon,
-  'Barnes and Noble': baren,
+  Amazon: 'https://www.amazon.com',
+  'Barnes and Noble': 'https://www.barnesandnoble.com',
   Trash: trashSvg,
 };
 
-export const refs = {
+const refs = {
   shoppingList: document.querySelector('.shopping-list'),
   emptyList: document.querySelector('.empty-list'),
-  shoppingListBtn: document.querySelector('.shopping-list-btn'),
 };
 
-const noImage = 'ścieżka/do/braku/obrazu.jpg'; // Dodaj deklarację noImage
+let arrSelectedBooks = checkLocalStorage() || [];
+const itemsPerPage = 4;
+let currentPage = 1;
 
-function createImageElement(src, alt, width, height) {
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = alt;
-  img.width = width;
-  img.height = height;
-  return img;
+document.addEventListener('DOMContentLoaded', function () {
+  showPage(arrSelectedBooks);
+  updatePaginationButtons();
+
+  document.querySelector('.pagination').addEventListener('click', event => {
+    if (event.target.tagName === 'BUTTON') {
+      const direction = event.target.dataset.direction;
+      navigateTo(direction);
+    }
+  });
+});
+
+function showPage(arrSelectedBooks) {
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const itemsToShow = arrSelectedBooks.slice(startIndex, endIndex);
+
+  markupShoppingList(itemsToShow);
+  updatePaginationButtons();
+
+  const emptyList = document.querySelector('.empty-list');
+  emptyList.style.display = arrSelectedBooks.length === 0 ? 'block' : 'none';
+}
+
+function markupShoppingList(arrSelectedBooks) {
+  const { shoppingList, emptyList } = refs;
+
+  let listMarkup = '';
+  if (arrSelectedBooks.length > 0) {
+    listMarkup = arrSelectedBooks
+      .map(({ id, title, author, img, description, amazonLink, barenNobelLink }) => {
+        return `
+        <li class="shoplist-item" data-idcard="${id}" data-amazon-link="${amazonLink}" data-baren-link="${barenNobelLink}">
+        <div class="delete-container" data-id="${id}">
+              <div class="delate-btn" data-id="${id}">
+                ${getImages('trash').outerHTML}
+              </div>
+            </div>
+            <div class="shop-container">
+              <div class="card-shoplist">
+                <div class="img-list">${
+                  img ? createImageElement(img, title, 100, 142).outerHTML : ''
+                }</div>
+                <div class="card-descrip">
+                  <h2 class="card-title-shoplist">${title}</h2>
+                  <p class="card-category-shoplist">${title || 'No Title'}</p>
+                  <p class="card-description-shoplist">${description}</p>
+                  <div class="wrapper-card-shoplist-footer">
+                    <p class="card-author-shoplist">${author}</p>
+                    <div class="trading-platform-icons" id="trading-platform-icons-${id}">
+                      <a href="#" class="icon-amazon" data-url="${amazonLink}"></a>
+                      <a href="#" class="icon-barenNobel" data-url="${barenNobelLink}"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>`;
+      })
+      .join('');
+  } else {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.classList.add('empty-message');
+    emptyMessage.textContent = 'Ta strona jest pusta, dodaj kilka książek i przejdź do zamówienia.';
+    emptyList.appendChild(emptyMessage);
+  }
+
+  shoppingList.innerHTML = listMarkup;
+
+  arrSelectedBooks.forEach(({ id, amazonLink, barenNobelLink }) => {
+    const delateButton = document.querySelector(`.delate-btn[data-id="${id}"]`);
+    delateButton.addEventListener('click', onClickDelate);
+
+    const amazonIcon = document.querySelector(`#trading-platform-icons-${id} .icon-amazon`);
+    const barenNobelIcon = document.querySelector(`#trading-platform-icons-${id} .icon-barenNobel`);
+
+    amazonIcon.addEventListener('click', event =>
+      handleShopItemClick(event, amazonLink, barenNobelLink),
+    );
+    barenNobelIcon.addEventListener('click', event =>
+      handleShopItemClick(event, amazonLink, barenNobelLink),
+    );
+  });
+}
+
+function handleShopItemClick(event, amazonLink, barenNobelLink) {
+  event.preventDefault();
+
+  if (amazonLink) {
+    window.open(amazonLink, '_blank');
+  } else if (barenNobelLink) {
+    window.open(barenNobelLink, '_blank');
+  }
+}
+
+function updatePaginationButtons() {
+  const pagination = document.querySelector('.pagination');
+  pagination.innerHTML = '';
+
+  if (arrSelectedBooks.length === 0) {
+    pagination.style.display = 'none';
+    return;
+  }
+
+  pagination.style.display = 'block';
+
+  const totalPages = Math.ceil(arrSelectedBooks.length / itemsPerPage);
+
+  const buttonFirst = createPaginationButton('«', 'first');
+  const buttonPrev = createPaginationButton('‹', 'prev');
+
+  pagination.appendChild(buttonFirst);
+  pagination.appendChild(buttonPrev);
+
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) {
+      const button = createPaginationButton(i, i);
+      pagination.appendChild(button);
+    }
+  } else {
+    for (let i = 1; i <= 3; i++) {
+      const button = createPaginationButton(i, i);
+      pagination.appendChild(button);
+    }
+
+    const dotsButton = createPaginationButton('...', null, true);
+    pagination.appendChild(dotsButton);
+
+    for (let i = totalPages - 2; i <= totalPages; i++) {
+      const button = createPaginationButton(i, i);
+      pagination.appendChild(button);
+    }
+  }
+
+  const buttonNext = createPaginationButton('›', 'next');
+  const buttonLast = createPaginationButton('»', 'last');
+
+  pagination.appendChild(buttonNext);
+  pagination.appendChild(buttonLast);
+}
+
+function createPaginationButton(label, direction, disabled = false) {
+  const button = document.createElement('button');
+  button.textContent = label;
+  button.dataset.direction = direction;
+  if (disabled) {
+    button.disabled = true;
+  } else {
+    button.onclick = () => navigateTo(direction);
+  }
+  return button;
+}
+
+function navigateTo(direction) {
+  switch (direction) {
+    case 'first':
+      currentPage = 1;
+      break;
+    case 'prev':
+      if (currentPage > 1) {
+        currentPage--;
+      }
+      break;
+    case 'next':
+      const totalPages = Math.ceil(arrSelectedBooks.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+      }
+      break;
+    case 'last':
+      const totalPagesLast = Math.ceil(arrSelectedBooks.length / itemsPerPage);
+      currentPage = totalPagesLast;
+      break;
+    default:
+      currentPage = parseInt(direction);
+  }
+
+  showPage(arrSelectedBooks);
+}
+
+function openBookstore(url) {
+  console.log('Opening bookstore:', url);
+  window.open(url, '_blank');
+}
+
+function onClickDelate(event) {
+  const id = event.currentTarget.dataset.id;
+
+  arrSelectedBooks = arrSelectedBooks.filter(book => book.id !== id);
+
+  localStorage.setItem('shoppingList', JSON.stringify(arrSelectedBooks));
+
+  const liRef = event.currentTarget.parentNode.parentNode;
+  liRef.remove();
+
+  if (arrSelectedBooks.length === 0) {
+    refs.emptyList.style.display = 'block';
+    refs.shoppingList.style.display = 'none';
+  } else {
+    refs.emptyList.style.display = 'none';
+    refs.shoppingList.style.display = 'flex';
+  }
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const remainingItemsOnPage = arrSelectedBooks.slice(startIndex, endIndex);
+
+  if (remainingItemsOnPage.length === 0 && currentPage > 1) {
+    currentPage--;
+  }
+
+  showPage(arrSelectedBooks);
 }
 
 function getImages(name) {
@@ -36,122 +242,43 @@ function getImages(name) {
   }
 }
 
-const { shoppingList, emptyList } = refs;
+function createImageElement(src, alt, width, height, amazonLink, barenNobelLink) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.width = width;
+  img.height = height;
 
-let arrSelectedBooks = checkLocalStorage() || [];
+  img.dataset.amazonLink = amazonLink;
+  img.dataset.barenNobelLink = barenNobelLink;
 
-if (arrSelectedBooks.length !== 0) {
-  hiddenOrVisual('none', 'flex');
-  markupShoppingList(arrSelectedBooks);
-} else {
-  hiddenOrVisual('block', 'none');
+  img.addEventListener('click', handleImageClick);
+
+  return img;
 }
 
-export function hiddenOrVisual(statusForEmptyList, statusForShoppingList) {
-  emptyList.style.display = statusForEmptyList;
-  shoppingList.style.display = statusForShoppingList;
+function handleImageClick(event) {
+  const amazonLink = event.target.dataset.amazonLink;
+  const barenNobelLink = event.target.dataset.barenNobelLink;
+
+  if (amazonLink) {
+    window.open(amazonLink, '_blank');
+  } else if (barenNobelLink) {
+    window.open(barenNobelLink, '_blank');
+  }
+}
+
+function handleShopItemClick(event, url) {
+  event.preventDefault();
+  window.open(url, '_blank');
 }
 
 function checkLocalStorage() {
   let arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
   arrBooks = arrBooks.map(book => ({
     ...book,
-    amazonLink: objShop.Amazon,
-    barenNobelLink: objShop['Barnes and Noble'],
+    amazonLink: book.amazonLink || objShop.Amazon,
+    barenNobelLink: book.barenNobelLink || objShop['Barnes and Noble'],
   }));
   return arrBooks;
-}
-
-function openBookstore(url) {
-  console.log('Opening bookstore:', url);
-  window.open(url, '_blank');
-}
-
-function markupListOfStore(stores) {
-  if (!Array.isArray(stores)) {
-    return '';
-  }
-
-  const validStores = stores.filter(({ name }) => name === 'amazon' || name === 'baren');
-
-  const shopItems = validStores.map(({ name, url }) => {
-    const picture = getImages(name);
-    const shopItem = document.createElement('div');
-    shopItem.classList.add('shop-item');
-    shopItem.appendChild(picture);
-    picture.dataset.url = url;
-    picture.addEventListener('click', () => handleShopItemClick(url, name));
-
-    return shopItem;
-  });
-
-  return shopItems.map(item => item.outerHTML).join('\n');
-}
-
-function handleShopItemClick(url, platform) {
-  openBookstore(url);
-}
-
-export function markupShoppingList(arrSelectedBooks) {
-  const arrCardsSelectedBooks = arrSelectedBooks.map(
-    ({ id, title, author, img, description, shops }) => {
-      const shopsName = markupListOfStore(shops);
-      if (img === '') {
-        img = `${noImage}`;
-      }
-
-      const imgElement = createImageElement(img, title, 100, 142);
-
-      return `
-        <li class="shoplist-item" data-idcard="${id}">
-          <div class="delete-container" data-id="${id}">
-            <div class="delate-btn" data-id="${id}">
-              ${getImages('trash').outerHTML}
-            </div>
-          </div>
-          <div class="shop-container">
-            <div class="card-shoplist">
-              <div class="img-list">${imgElement.outerHTML}</div>
-              <div class="card-descrip">
-                <h2 class="card-title-shoplist">${title}</h2>
-                <p class="card-category-shoplist">${title || 'No Title'}</p>
-                <p class="card-description-shoplist">${description}</p>
-                <div class="wrapper-card-shoplist-footer">
-                  <p class="card-author-shoplist">${author}</p>
-                  <div class="trading-platform-icons">
-                    <a href="${objShop.Amazon}" class="icon-amazon" target="_blank"></a>
-                    <a href="${
-                      objShop['Barnes and Noble']
-                    }" class="icon-barenNobel" target="_blank"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>`;
-    },
-  );
-
-  shoppingList.innerHTML = arrCardsSelectedBooks.join('');
-
-  document.querySelectorAll('.delete-container').forEach(deleteContainer => {
-    deleteContainer.addEventListener('click', onClickDelete);
-  });
-}
-
-function onClickDelete(event) {
-  const id = event.currentTarget.dataset.id;
-
-  let arrSelectedBooks = checkLocalStorage() || [];
-  arrSelectedBooks = arrSelectedBooks.filter(book => book.id !== id);
-  localStorage.setItem('shoppingList', JSON.stringify(arrSelectedBooks));
-
-  const liRef = event.currentTarget.parentNode;
-  liRef.remove();
-
-  if (shoppingList.innerHTML === '') {
-    hiddenOrVisual('block', 'none');
-  } else {
-    hiddenOrVisual('none', 'flex');
-  }
 }
