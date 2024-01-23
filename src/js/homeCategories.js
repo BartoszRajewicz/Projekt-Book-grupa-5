@@ -261,6 +261,30 @@ document.querySelectorAll('.book-category').forEach(category => {
 });
 
 export function openPopup(book) {
+  var arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+  var selectedBook = {
+    id: book._id,
+    author: book.author,
+    img: book.book_image,
+    description: book.description,
+    title: book.title,
+    amazonLink: book.buy_links[0].url,
+    barenNobelLink: book.buy_links[2].url,
+  };
+
+  const isInArray = arrBooks.some(item => item.id === selectedBook.id);
+
+  if (!isInArray) {
+    shoppingListBtn.textContent = `Add to shopping list`;
+    receipt.textContent = ``;
+    shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
+  } else {
+    shoppingListBtn.textContent = `Remove from the shopping list`;
+    receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
+    shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
+  }
+
   popupTitle.textContent = book.title;
   popupAuthor.textContent = book.author;
   popupDescription.textContent = book.description;
@@ -270,22 +294,15 @@ export function openPopup(book) {
 
   popup.style.display = 'block';
 
-  var arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
-
   function addBookToShoppingList() {
-    const isInArray = arrBooks.some(existingBook => existingBook.id === selectedBook.id);
+    arrBooks.push(selectedBook);
+    localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
 
-    if (!isInArray) {
-      arrBooks.push(selectedBook);
-      localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
+    receipt.textContent = `Congratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".`;
+    shoppingListBtn.textContent = `Remove from the shopping list`;
 
-      receipt.textContent = `Congratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".`;
-      shoppingListBtn.textContent = `Remove from the shopping list`;
-      shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
-      shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
-    } else {
-      receipt.textContent = `This book is already in the shopping list.`;
-    }
+    shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
+    shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
   }
 
   function removeBookFromShoppingList() {
@@ -299,30 +316,6 @@ export function openPopup(book) {
     shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
     shoppingListBtn.removeEventListener(`click`, removeBookFromShoppingList);
   }
-
-  const isInArray = arrBooks.includes(JSON.stringify(selectedBook));
-
-  if (!isInArray) {
-    shoppingListBtn.textContent = `Add to shopping list`;
-    receipt.textContent = ``;
-    shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
-  }
-
-  if (isInArray) {
-    shoppingListBtn.textContent = `Remove from the shopping list`;
-    receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
-    shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
-  }
-
-  var selectedBook = {
-    id: book._id,
-    author: book.author,
-    img: book.book_image,
-    description: book.description,
-    title: book.title,
-    amazonLink: book.buy_links[0].url,
-    barenNobelLink: book.buy_links[2].url,
-  };
 
   popupClose.addEventListener(`click`, closePopup);
   window.addEventListener(`click`, event => {
