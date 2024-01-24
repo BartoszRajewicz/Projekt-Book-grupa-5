@@ -134,11 +134,14 @@
     .menu-icon {
         filter: brightness(0) invert(1);
     }
-    .nav__link {
-        &--active{
-            &::after{
-                color: black;
+    .nav__item {
+        &:hover,
+        &:active,
+        &:focus,
+        &:visited {
+            .nav__icon {
+                filter: none;
             }
-        }
+            }
     }
 }
