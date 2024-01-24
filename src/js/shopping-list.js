@@ -268,11 +268,6 @@ function handleImageClick(event) {
   }
 }
 
-function handleShopItemClick(event, url) {
-  event.preventDefault();
-  window.open(url, '_blank');
-}
-
 function checkLocalStorage() {
   let arrBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
   arrBooks = arrBooks.map(book => ({
