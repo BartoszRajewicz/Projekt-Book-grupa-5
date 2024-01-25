@@ -1,4 +1,8 @@
 @import './globals';
+.pagination button.active {
+  background-color: #111111;
+  color: white;
+}
 
 .section-shopping-list {
   margin: auto;

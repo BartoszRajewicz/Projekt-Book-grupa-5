@@ -100,16 +100,6 @@ function markupShoppingList(arrSelectedBooks) {
   });
 }
 
-function handleShopItemClick(event, amazonLink, barenNobelLink) {
-  event.preventDefault();
-
-  if (amazonLink) {
-    window.open(amazonLink, '_blank');
-  } else if (barenNobelLink) {
-    window.open(barenNobelLink, '_blank');
-  }
-}
-
 function updatePaginationButtons() {
   const pagination = document.querySelector('.pagination');
   pagination.innerHTML = '';
@@ -129,23 +119,44 @@ function updatePaginationButtons() {
   pagination.appendChild(buttonFirst);
   pagination.appendChild(buttonPrev);
 
-  if (totalPages <= 7) {
-    for (let i = 1; i <= totalPages; i++) {
-      const button = createPaginationButton(i, i);
-      pagination.appendChild(button);
-    }
-  } else {
-    for (let i = 1; i <= 3; i++) {
-      const button = createPaginationButton(i, i);
-      pagination.appendChild(button);
-    }
-
+  if (window.innerWidth < 768) {
     const dotsButton = createPaginationButton('...', null, true);
+    const prevPage = currentPage > 1 ? currentPage - 1 : 1;
+    const currentPageButton = currentPage > 0 ? currentPage : 1;
+    pagination.appendChild(createPaginationButton(prevPage, prevPage));
+    pagination.appendChild(createPaginationButton(currentPageButton, currentPageButton));
     pagination.appendChild(dotsButton);
-
-    for (let i = totalPages - 2; i <= totalPages; i++) {
-      const button = createPaginationButton(i, i);
-      pagination.appendChild(button);
+  } else {
+    if (totalPages <= 3) {
+      for (let i = 1; i <= totalPages; i++) {
+        const button = createPaginationButton(i, i);
+        pagination.appendChild(button);
+      }
+    } else {
+      if (currentPage <= 2) {
+        for (let i = 1; i <= 3; i++) {
+          const button = createPaginationButton(i, i);
+          pagination.appendChild(button);
+        }
+        const dotsButton = createPaginationButton('...', null, true);
+        pagination.appendChild(dotsButton);
+      } else if (currentPage >= totalPages - 1) {
+        const dotsButton = createPaginationButton('...', null, true);
+        pagination.appendChild(dotsButton);
+        for (let i = totalPages - 2; i <= totalPages; i++) {
+          const button = createPaginationButton(i, i);
+          pagination.appendChild(button);
+        }
+      } else {
+        const dotsButton = createPaginationButton('...', null, true);
+        pagination.appendChild(dotsButton);
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          const button = createPaginationButton(i, i);
+          pagination.appendChild(button);
+        }
+        const dotsButton2 = createPaginationButton('...', null, true);
+        pagination.appendChild(dotsButton2);
+      }
     }
   }
 
@@ -154,7 +165,25 @@ function updatePaginationButtons() {
 
   pagination.appendChild(buttonNext);
   pagination.appendChild(buttonLast);
+
+  buttonNext.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      updatePaginationButtons();
+    }
+  });
+
+  buttonLast.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage = totalPages;
+      updatePaginationButtons();
+    }
+  });
 }
+
+window.addEventListener('resize', updatePaginationButtons);
+
+updatePaginationButtons();
 
 function createPaginationButton(label, direction, disabled = false) {
   const button = document.createElement('button');
@@ -163,8 +192,16 @@ function createPaginationButton(label, direction, disabled = false) {
   if (disabled) {
     button.disabled = true;
   } else {
-    button.onclick = () => navigateTo(direction);
+    button.onclick = () => {
+      navigateTo(direction);
+      updatePaginationButtons();
+    };
   }
+
+  if (label === currentPage) {
+    button.classList.add('active');
+  }
+
   return button;
 }
 
@@ -193,11 +230,7 @@ function navigateTo(direction) {
   }
 
   showPage(arrSelectedBooks);
-}
-
-function openBookstore(url) {
-  console.log('Opening bookstore:', url);
-  window.open(url, '_blank');
+  updatePaginationButtons();
 }
 
 function onClickDelate(event) {
