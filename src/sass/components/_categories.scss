@@ -147,27 +147,30 @@ body {
     position: relative;
     text-align: center;
     max-width: 335px;
+
     @media screen and (min-width: 1440px) {
       max-width: 180px;
     }
     // max-height: 256px;
+  }
 
-    .quick-view-overlay {
-      position: absolute;
-      overflow: hidden;
-      top: 80%;
-      left: 0;
-      width: 100%;
-      height: 20%;
-      padding-top: 15px;
-      border-radius: 0px 0px 8px 8px;
-      text-align: center;
-      background-color: $yellowColor;
-      transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  .quick-view-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 27%;
+    transform: translateY(100%);
+    border-radius: 0px 0px 8px 8px;
+    opacity: 0;
+    user-select: none;
+    text-align: center;
+    background-color: $yellowColor;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-      .book-card:hover & {
-        top: -80%;
-      }
+    .book-card:hover .quick-view-overlay {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .image-container {
