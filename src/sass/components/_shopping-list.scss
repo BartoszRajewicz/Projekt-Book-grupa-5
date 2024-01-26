@@ -1,7 +1,55 @@
 @import './globals';
-.pagination button.active {
-  background-color: #111111;
-  color: white;
+.pagination {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-top: 30px;
+
+  button {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  button.active {
+    background-color: #111111;
+    color: white;
+  }
+
+  button:nth-child(1),
+  button:nth-child(2) {
+    margin-right: 8px;
+    color: #b4afaf;
+    background-color: #111111;
+    font-size: 36px;
+  }
+
+  button:nth-child(6) {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 22px;
+    color: #111111;
+    margin-right: 24px;
+  }
+  button:nth-child(3) {
+    margin-left: 24px;
+  }
+  button:nth-child(3),
+  button:nth-child(4),
+  button:nth-child(5) {
+    margin-right: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 22px;
+  }
+
+  button:nth-child(7),
+  button:nth-child(8) {
+    margin-right: 8px;
+    color: #000000;
+    background-color: #eac645;
+    font-size: 36px;
+  }
 }
 
 .section-shopping-list {
