@@ -91,13 +91,25 @@ function markupShoppingList(arrSelectedBooks) {
     const amazonIcon = document.querySelector(`#trading-platform-icons-${id} .icon-amazon`);
     const barenNobelIcon = document.querySelector(`#trading-platform-icons-${id} .icon-barenNobel`);
 
-    amazonIcon.addEventListener('click', event =>
-      handleShopItemClick(event, amazonLink, barenNobelLink),
-    );
-    barenNobelIcon.addEventListener('click', event =>
-      handleShopItemClick(event, amazonLink, barenNobelLink),
+    amazonIcon.addEventListener('click', createShopIconClickListener(amazonLink, barenNobelLink));
+    barenNobelIcon.addEventListener(
+      'click',
+      createShopIconClickListener(amazonLink, barenNobelLink),
     );
   });
+}
+
+function createShopIconClickListener(amazonLink, barenNobelLink) {
+  return event => handleShopItemClick(event, amazonLink, barenNobelLink);
+}
+function handleShopItemClick(event, amazonLink, barenNobelLink) {
+  event.preventDefault();
+
+  if (amazonLink) {
+    window.open(amazonLink, '_blank');
+  } else if (barenNobelLink) {
+    window.open(barenNobelLink, '_blank');
+  }
 }
 
 function updatePaginationButtons() {
@@ -121,12 +133,31 @@ function updatePaginationButtons() {
 
   if (window.innerWidth < 768) {
     const dotsButton = createPaginationButton('...', null, true);
-    const prevPage = currentPage > 1 ? currentPage - 1 : 1;
-    const currentPageButton = currentPage > 0 ? currentPage : 1;
-    pagination.appendChild(createPaginationButton(prevPage, prevPage));
-    pagination.appendChild(createPaginationButton(currentPageButton, currentPageButton));
-    pagination.appendChild(dotsButton);
+
+    if (totalPages > 2) {
+      if (currentPage === 1) {
+        pagination.appendChild(createPaginationButton(1, 1));
+        pagination.appendChild(createPaginationButton(2, 2));
+        pagination.appendChild(dotsButton);
+      } else if (currentPage === totalPages) {
+        pagination.appendChild(dotsButton);
+        pagination.appendChild(createPaginationButton(currentPage - 1, currentPage - 1));
+        pagination.appendChild(createPaginationButton(currentPage, currentPage));
+      } else {
+        pagination.appendChild(dotsButton);
+        pagination.appendChild(createPaginationButton(currentPage, currentPage));
+        pagination.appendChild(createPaginationButton(currentPage + 1, currentPage + 1));
+        pagination.appendChild(dotsButton);
+      }
+    } else {
+      for (let i = 1; i <= totalPages; i++) {
+        const button = createPaginationButton(i, i);
+        pagination.appendChild(button);
+      }
+    }
   } else {
+    const dotsButton = createPaginationButton('...', null, true);
+
     if (totalPages <= 3) {
       for (let i = 1; i <= totalPages; i++) {
         const button = createPaginationButton(i, i);
@@ -138,24 +169,20 @@ function updatePaginationButtons() {
           const button = createPaginationButton(i, i);
           pagination.appendChild(button);
         }
-        const dotsButton = createPaginationButton('...', null, true);
         pagination.appendChild(dotsButton);
       } else if (currentPage >= totalPages - 1) {
-        const dotsButton = createPaginationButton('...', null, true);
         pagination.appendChild(dotsButton);
         for (let i = totalPages - 2; i <= totalPages; i++) {
           const button = createPaginationButton(i, i);
           pagination.appendChild(button);
         }
       } else {
-        const dotsButton = createPaginationButton('...', null, true);
         pagination.appendChild(dotsButton);
         for (let i = currentPage - 1; i <= currentPage + 1; i++) {
           const button = createPaginationButton(i, i);
           pagination.appendChild(button);
         }
-        const dotsButton2 = createPaginationButton('...', null, true);
-        pagination.appendChild(dotsButton2);
+        pagination.appendChild(dotsButton);
       }
     }
   }
@@ -176,6 +203,20 @@ function updatePaginationButtons() {
   buttonLast.addEventListener('click', () => {
     if (currentPage < totalPages) {
       currentPage = totalPages;
+      updatePaginationButtons();
+    }
+  });
+
+  buttonPrev.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      updatePaginationButtons();
+    }
+  });
+
+  buttonFirst.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage = 1;
       updatePaginationButtons();
     }
   });
