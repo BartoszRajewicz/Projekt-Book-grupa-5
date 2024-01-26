@@ -107,9 +107,21 @@ function fetchTopCategories() {
                 <p>${book.author}</p>
               </div>`;
             card.addEventListener('click', () => openPopup(book));
+
+            card.addEventListener('mouseover', () => {
+              const quickViewOverlay = card.querySelector('.quick-view-overlay');
+              quickViewOverlay.style.opacity = 1;
+              quickViewOverlay.style.transform = 'translateY(0)';
+            });
+
+            card.addEventListener('mouseout', () => {
+              const quickViewOverlay = card.querySelector('.quick-view-overlay');
+              quickViewOverlay.style.opacity = 0;
+              quickViewOverlay.style.transform = 'translateY(100%)';
+            });
+
             booksList.appendChild(card);
           });
-
           const seeMoreButton = document.createElement('button');
           seeMoreButton.textContent = 'See More';
           seeMoreButton.classList.add('see-more-button');
