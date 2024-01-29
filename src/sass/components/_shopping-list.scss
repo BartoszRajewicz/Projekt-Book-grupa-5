@@ -137,7 +137,7 @@
 .shoplist-item {
   position: relative;
   display: block;
-  max-width: 335px;
+  // max-width: 335px;
   height: 213px;
 
   align-items: center;
@@ -146,11 +146,11 @@
   border: 2px solid rgba(79, 46, 232, 0.4);
   background-color: #ffffff;
 }
-@media screen and (min-width: 1440px) {
-  .shoplist-item {
-    max-width: 996px;
-  }
-}
+// @media screen and (min-width: 1440px) {
+//   .shoplist-item {
+//     max-width: 996px;
+//   }
+// }
 .shop-container {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -229,7 +229,7 @@ img {
 }
 .card-shoplist {
   display: flex;
-  max-width: 450px;
+  // max-width: 450px;
 }
 .card-descrip {
   max-width: 808px;
