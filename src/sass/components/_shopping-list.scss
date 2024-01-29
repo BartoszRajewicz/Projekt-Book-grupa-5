@@ -232,7 +232,10 @@ img {
   // max-width: 450px;
 }
 .card-descrip {
-  max-width: 808px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .card-title-shoplist {
   margin-bottom: 4px;
@@ -286,17 +289,17 @@ img {
   }
 }
 .wrapper-card-shoplist-footer {
-  max-width: 193px;
+  // max-width: 193px;
   align-items: baseline;
   display: flex;
   justify-content: space-between;
   gap: 16px;
 }
-@media screen and (min-width: 1440px) {
-  .wrapper-card-shoplist-footer {
-    max-width: 808px;
-  }
-}
+// @media screen and (min-width: 1440px) {
+//   .wrapper-card-shoplist-footer {
+//     max-width: 808px;
+//   }
+// }
 .card-author-shoplist {
   margin-right: auto;
   max-width: 97px;
