@@ -137,7 +137,7 @@
 .shoplist-item {
   position: relative;
   display: block;
-  max-width: 335px;
+  // max-width: 335px;
   height: 213px;
 
   align-items: center;
@@ -146,11 +146,11 @@
   border: 2px solid rgba(79, 46, 232, 0.4);
   background-color: #ffffff;
 }
-@media screen and (min-width: 1440px) {
-  .shoplist-item {
-    max-width: 996px;
-  }
-}
+// @media screen and (min-width: 1440px) {
+//   .shoplist-item {
+//     max-width: 996px;
+//   }
+// }
 .shop-container {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -229,10 +229,13 @@ img {
 }
 .card-shoplist {
   display: flex;
-  max-width: 450px;
+  // max-width: 450px;
 }
 .card-descrip {
-  max-width: 808px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .card-title-shoplist {
   margin-bottom: 4px;
@@ -286,17 +289,17 @@ img {
   }
 }
 .wrapper-card-shoplist-footer {
-  max-width: 193px;
+  // max-width: 193px;
   align-items: baseline;
   display: flex;
   justify-content: space-between;
   gap: 16px;
 }
-@media screen and (min-width: 1440px) {
-  .wrapper-card-shoplist-footer {
-    max-width: 808px;
-  }
-}
+// @media screen and (min-width: 1440px) {
+//   .wrapper-card-shoplist-footer {
+//     max-width: 808px;
+//   }
+// }
 .card-author-shoplist {
   margin-right: auto;
   max-width: 97px;

@@ -290,10 +290,12 @@ export function openPopup(book) {
   if (!isInArray) {
     shoppingListBtn.textContent = `Add to shopping list`;
     receipt.textContent = ``;
+    shoppingListBtn.removeEventListener(`click`, removeBookFromShoppingList);
     shoppingListBtn.addEventListener(`click`, addBookToShoppingList);
   } else {
     shoppingListBtn.textContent = `Remove from the shopping list`;
     receipt.textContent = `Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.`;
+    shoppingListBtn.removeEventListener(`click`, addBookToShoppingList);
     shoppingListBtn.addEventListener(`click`, removeBookFromShoppingList);
   }
 
@@ -318,7 +320,7 @@ export function openPopup(book) {
   }
 
   function removeBookFromShoppingList() {
-    var newArrBooks = arrBooks.filter(obiekt => obiekt !== selectedBook);
+    var newArrBooks = arrBooks.filter(book => book.id !== selectedBook.id);
     arrBooks = newArrBooks;
     localStorage.setItem('shoppingList', JSON.stringify(arrBooks));
 
